@@ -43,7 +43,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        java-version: '17'  # 根据你项目需求可改
+        java-version: '23'  # 根据你项目需求可改
 
 
     # Initializes the CodeQL tools for scanning.
