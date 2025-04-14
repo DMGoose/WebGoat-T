@@ -34,7 +34,7 @@ jobs:
           build-mode: none
         - language: python
           build-mode: none
-        - language: java
+        - language: java-kotlin
           build-mode: autobuild
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
     steps:
@@ -85,6 +85,14 @@ jobs:
           output: 'trivy-fs-results.sarif'
 
       # Java用的
+      # ✅ 如果是 Java 项目，则设置 JDK 23（避免“release 23 not supported”）
+      - name: Set up JDK 23
+        if: hashFiles('pom.xml') != ''
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+      
       - name: Build Java Project (Only if pom.xml exists)
         if: hashFiles('pom.xml') != ''
         run: mvn clean package -DskipTests
