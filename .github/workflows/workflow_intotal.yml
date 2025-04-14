@@ -58,15 +58,18 @@ jobs:
         echo '  make bootstrap'
         echo '  make release'
         exit 1
+        
     - name: Perform CodeQL Analysis (SAST)
       uses: github/codeql-action/analyze@v3
+      with:
+        output: codeql-results.sarif
 
-    # 下面这个没用
-    # - name: Upload CodeQL SARIF
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: codeql-report
-    #     path: codeql-results.sarif  # 你需要先保存这个文件（如果没自动生成）
+    # 下面这个没用?
+    - name: Upload CodeQL SARIF
+      uses: actions/upload-artifact@v4
+      with:
+        name: codeql-report
+        path: codeql-results.sarif  # 你需要先保存这个文件（如果没自动生成）
 
   sca:
     runs-on: ubuntu-latest
