@@ -1,0 +1,31 @@
+name: DAST Scan with ZAP
+
+on:
+  workflow_call:
+    inputs:
+      docker_instructions:
+        required: true
+        type: string
+      target_url:
+        required: true
+        type: string
+
+jobs:
+  dast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Start Web with Docker Compose
+        run: |
+          ${{ inputs.docker_instruction }}
+          sleep 15  # 给 DVWA 启动一些时间
+
+      - name: List Running Containers (Debug)
+        run: docker ps
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: ${{ inputs.target_url }}
