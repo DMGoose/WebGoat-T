@@ -101,9 +101,11 @@ jobs:
       - name: Build Docker Image from Current App
         run: docker build -t my-app:${{ github.sha }} .
 
-      # 这是 docker image 的 扫描, 扫描 docker image 中的漏洞
+      # 这是 docker image 的 扫描, 扫描 docker image 中的漏洞, 15分钟限制
       - name: Run Trivy on Built Image
         uses: aquasecurity/trivy-action@0.28.0
+        env:
+          TRIVY_TIMEOUT: 15m
         with:
           image-ref: 'my-app:${{ github.sha }}'
           format: 'sarif'
