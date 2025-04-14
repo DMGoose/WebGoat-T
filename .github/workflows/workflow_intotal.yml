@@ -39,7 +39,7 @@ jobs:
 
     # java用的
     - name: Set up JDK for Java
-      if: matrix.language == 'java'
+      if: matrix.language == 'java' && hashFiles('pom.xml') != ''
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
@@ -55,7 +55,7 @@ jobs:
 
     # 还是java用的
     - name: Manual Build for Java
-      if: matrix.language == 'java'
+      if: matrix.language == 'java' && hashFiles('pom.xml') != ''
       run: mvn clean package -DskipTests
         
     # - if: matrix.build-mode == 'manual'
