@@ -1,3 +1,4 @@
+
 name: "workflow_intotal"
 
 on:
@@ -55,7 +56,6 @@ jobs:
         echo '  make bootstrap'
         echo '  make release'
         exit 1
-
     - name: Perform CodeQL Analysis (SAST)
       uses: github/codeql-action/analyze@v3
 
@@ -121,15 +121,30 @@ jobs:
           path: trivy-results.sarif
 
 
-  dast-call_dast_file:
+  dast:
     needs: sca
-    uses: ./.github/workflows/dast_file.yml
-    with: 
-      docker_instructions: docker compose up -d  #you need to change this # you need to change this based on your web
-      target_url:  http://localhost:4280 # you need to change this based on your web
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Start DVWA with Docker Compose
+        run: |
+          docker compose up -d
+          sleep 15  # 给 DVWA 启动一些时间
+      - name: List Running Containers (Debug)
+        run: docker ps
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: 'http://localhost:4280'
+          
+          # 上面这个自动会上传到artifact, 所以不用手动上传
 
   report-merge:
-    needs: [sast, sca, dast-call_dast_file]
+    needs: [sast, sca, dast]
     runs-on: ubuntu-latest
 
     steps:
@@ -161,7 +176,6 @@ jobs:
       - name: Parse all the Results
         run: |
           python scripts/parse_reports.py
-
       - name: Upload Merged Report
         uses: actions/upload-artifact@v4
         with:
@@ -190,7 +204,6 @@ jobs:
         run: |
           mkdir -p report-template/public/data
           mv merged-security-reports.json report-template/public/data/merged-security-reports.json
-
       - name: Commit ZAP report to repo
         uses: EndBug/add-and-commit@v9
         with:
@@ -206,6 +219,3 @@ jobs:
       #  # 然后把文件放进去
       # - name: Copy merged report to dashboard data folder
       #   run: cp merged-security-reports.json report-template/public/data/merged.json
-
-
-        
