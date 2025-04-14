@@ -34,6 +34,8 @@ jobs:
           build-mode: none
         - language: python
           build-mode: none
+        - language: java
+          build-mode: autobuild
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
     steps:
     - name: Checkout repository
@@ -81,6 +83,11 @@ jobs:
           scan-ref: '.'
           format: 'sarif'
           output: 'trivy-fs-results.sarif'
+
+      # Java用的
+      - name: Build Java Project (Only if pom.xml exists)
+        if: hashFiles('pom.xml') != ''
+        run: mvn clean package -DskipTests
 
       # 构建容器
       - name: Build Docker Image from Current App
