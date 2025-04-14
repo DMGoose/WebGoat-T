@@ -30,10 +30,6 @@ jobs:
         include:
         - language: actions
           build-mode: none
-        - language: javascript-typescript
-          build-mode: none
-        - language: python
-          build-mode: none
         - language: java-kotlin
           build-mode: none
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
@@ -68,7 +64,7 @@ jobs:
     - name: Upload CodeQL SARIF
       uses: actions/upload-artifact@v4
       with:
-        name: codeql-report
+        name: codeql-report-${{ matrix.language }}
         path: codeql-results.sarif  # 你需要先保存这个文件（如果没自动生成）
 
   sca:
