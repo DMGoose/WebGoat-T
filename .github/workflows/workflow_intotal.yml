@@ -1,0 +1,211 @@
+name: "workflow_intotal"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '22 7 * * 2'
+
+jobs:
+  sast:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    permissions:
+      # required for all workflows
+      security-events: write
+
+      # required to fetch internal or private CodeQL packs
+      packages: read
+
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - language: actions
+          build-mode: none
+        - language: javascript-typescript
+          build-mode: none
+        - language: python
+          build-mode: none
+        # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        build-mode: ${{ matrix.build-mode }}
+        
+    - if: matrix.build-mode == 'manual'
+      shell: bash
+      run: |
+        echo 'If you are using a "manual" build mode for one or more of the' \
+          'languages you are analyzing, replace this with the commands to build' \
+          'your code, for example:'
+        echo '  make bootstrap'
+        echo '  make release'
+        exit 1
+
+    - name: Perform CodeQL Analysis (SAST)
+      uses: github/codeql-action/analyze@v3
+
+    # 下面这个没用
+    # - name: Upload CodeQL SARIF
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: codeql-report
+    #     path: codeql-results.sarif  # 你需要先保存这个文件（如果没自动生成）
+
+  sca:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 这是fs 的扫描,目录 SCA, 未构建镜像时提前发现问题
+      - name: Trivy FS scan
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-fs-results.sarif'
+
+      # 构建容器
+      - name: Build Docker Image from Current App
+        run: docker build -t my-app:${{ github.sha }} .
+
+      # 这是 docker image 的 扫描, 扫描 docker image 中的漏洞
+      - name: Run Trivy on Built Image
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: 'my-app:${{ github.sha }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+     # # 上传结果到security hub
+     #  - name: Upload Trivy FS scan results
+     #    uses: github/codeql-action/upload-sarif@v3
+     #    with:
+     #      sarif_file: 'trivy-fs-results.sarif'
+     #      category: 'trivy-fs'
+      
+     #  - name: Upload Trivy Docker scan results to GitHub Security tab
+     #    uses: github/codeql-action/upload-sarif@v3
+     #    with:
+     #      sarif_file: 'trivy-results.sarif'
+     #      category: 'trivy-image'
+
+      # 上传结果到artifact
+      - name: Upload Trivy FS scan results (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-fs-report
+          path: trivy-fs-results.sarif
+
+      - name: Upload Trivy Image scan results (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-image-report
+          path: trivy-results.sarif
+
+
+  dast-call_dast_file:
+    needs: sca
+    uses: ./.github/workflows/dast_file.yml
+    with: 
+      docker_instructions: docker compose up -d  #you need to change this # you need to change this based on your web
+      target_url:  http://localhost:4280 # you need to change this based on your web
+
+  report-merge:
+    needs: [sast, sca, dast-call_dast_file]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download Trivy FS results
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-fs-report
+          path: .
+
+      - name: Download Trivy Image results
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-image-report
+          path: .
+
+      - name: Download ZAP results
+        uses: actions/download-artifact@v4
+        with:
+            name: zap_scan
+            path: .
+
+      # # 解压一下
+      # - name: Unzip ZAP Report
+      #   run: unzip zap_scan.zip
+
+      - name: Parse all the Results
+        run: |
+          python scripts/parse_reports.py
+
+      - name: Upload Merged Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-security-reports
+          path: merged-security-reports.json
+
+  upload-report:
+    needs: [report-merge]
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        
+      - name: download merged-security-reports
+        uses: actions/download-artifact@v4
+        with:
+          name: merged-security-reports
+
+      # - name: Generate timestamp for report
+      #   id: timestamp
+      #   run: echo "ts=$(date +'%Y%m%d_%H%M')" >> $GITHUB_OUTPUT
+
+      - name: create a folder and move report into the folder
+        run: |
+          mkdir -p report-template/public/data
+          mv merged-security-reports.json report-template/public/data/merged-security-reports.json
+
+      - name: Commit ZAP report to repo
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Add latest merged report"
+          add: "report-template/public/data/merged-security-reports.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+      # 把 JSON 拷贝到 该拷贝的地方
+       # 没有文件夹就自动创建
+      # - name: Ensure data folder exists
+      #   run: mkdir -p report-template/public/data
+      #  # 然后把文件放进去
+      # - name: Copy merged report to dashboard data folder
+      #   run: cp merged-security-reports.json report-template/public/data/merged.json
+
+
+        
