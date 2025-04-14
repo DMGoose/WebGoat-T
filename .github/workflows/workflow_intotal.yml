@@ -28,9 +28,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - language: actions
+        - language: javascript-typescript
           build-mode: none
-        - language: java-kotlin
+        - language: python
           build-mode: none
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
     steps:
@@ -54,13 +54,12 @@ jobs:
         echo '  make bootstrap'
         echo '  make release'
         exit 1
-        
     - name: Perform CodeQL Analysis (SAST)
       uses: github/codeql-action/analyze@v3
       with:
         output: codeql-results.sarif
 
-    # 下面这个没用?
+   # 下面这个没用?
     - name: Upload CodeQL SARIF
       uses: actions/upload-artifact@v4
       with:
@@ -73,6 +72,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+        
 
       # 这是fs 的扫描,目录 SCA, 未构建镜像时提前发现问题
       - name: Trivy FS scan
@@ -96,15 +97,14 @@ jobs:
         if: hashFiles('pom.xml') != ''
         run: mvn clean package -DskipTests
 
+
       # 构建容器
       - name: Build Docker Image from Current App
         run: docker build -t my-app:${{ github.sha }} .
 
-      # 这是 docker image 的 扫描, 扫描 docker image 中的漏洞, 15分钟限制
+      # 这是 docker image 的 扫描, 扫描 docker image 中的漏洞
       - name: Run Trivy on Built Image
         uses: aquasecurity/trivy-action@0.28.0
-        env:
-          TRIVY_TIMEOUT: 15m
         with:
           image-ref: 'my-app:${{ github.sha }}'
           format: 'sarif'
@@ -147,7 +147,7 @@ jobs:
 
       - name: Start DVWA with Docker Compose
         run: |
-          docker run -it -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 webgoat/webgoat
+          docker compose up -d
           sleep 15  # 给 DVWA 启动一些时间
       - name: List Running Containers (Debug)
         run: docker ps
@@ -155,9 +155,11 @@ jobs:
       - name: ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.14.0
         with:
-          target: 'http://localhost:8080'
+          target: 'http://localhost:4280'
           
           # 上面这个自动会上传到artifact, 所以不用手动上传
+
+  
 
   report-merge:
     needs: [sast, sca, dast]
@@ -167,6 +169,34 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Install GitHub CLI & jq
+        run: |
+          sudo apt update
+          sudo apt install -y gh jq
+      
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+      
+      - name: List all artifacts
+        id: list-artifacts
+        run: |
+          gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts > artifacts.json
+          cat artifacts.json
+      
+      - name: Download all CodeQL artifacts
+        run: |
+          mkdir -p codeql
+          jq -r '.artifacts[] | select(.name | startswith("codeql-report-")) | [.id, .name] | @tsv' artifacts.json |
+          while IFS=$'\t' read -r id name; do
+            echo "Downloading $name..."
+            gh api -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -X GET \
+              -H "Accept: application/zip" \
+              "/repos/${{ github.repository }}/actions/artifacts/$id/zip" > "$name.zip"
+            unzip -o "$name.zip" -d codeql/
+          done
+        
       - name: Download Trivy FS results
         uses: actions/download-artifact@v4
         with:
@@ -185,10 +215,6 @@ jobs:
             name: zap_scan
             path: .
 
-      # # 解压一下
-      # - name: Unzip ZAP Report
-      #   run: unzip zap_scan.zip
-
       - name: Parse all the Results
         run: |
           python scripts/parse_reports.py
@@ -203,7 +229,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repo
         uses: actions/checkout@v4
         
