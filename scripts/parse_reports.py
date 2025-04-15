@@ -52,7 +52,7 @@ def parse_codeql_sarif(sarif_path):
 codeql_reports = []
 for root, dirs, files in os.walk("codeql"):
     for file in files:
-        if "codeql" in file.lower() and file.endswith(".sarif"):
+        if file.endswith(".sarif"):
             full_path = os.path.join(root, file)
             parsed = parse_codeql_sarif(full_path)
             if parsed:
