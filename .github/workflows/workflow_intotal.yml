@@ -23,23 +23,23 @@ jobs:
       - name: Check for source files
         id: check
         run: |
-          if compgen -G "**/*.py" > /dev/null; then
-            echo "has_python=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_python=false" >> $GITHUB_OUTPUT
-          fi
-
-          if compgen -G "**/*.js" "**/*.ts" "**/*.jsx" "**/*.tsx" > /dev/null; then
-            echo "has_js=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_js=false" >> $GITHUB_OUTPUT
-          fi
-
-          if compgen -G "**/*.java" > /dev/null; then
-            echo "has_java=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_java=false" >> $GITHUB_OUTPUT
-          fi
+            if find . -name "*.py" | grep -q .; then
+              echo "has_python=true" >> $GITHUB_OUTPUT
+            else
+              echo "has_python=false" >> $GITHUB_OUTPUT
+            fi
+          
+            if find . \( -name "*.js" -o -name "*.ts" -o -name "*.jsx" -o -name "*.tsx" \) | grep -q .; then
+              echo "has_js=true" >> $GITHUB_OUTPUT
+            else
+              echo "has_js=false" >> $GITHUB_OUTPUT
+            fi
+          
+            if find . -name "*.java" | grep -q .; then
+              echo "has_java=true" >> $GITHUB_OUTPUT
+            else
+              echo "has_java=false" >> $GITHUB_OUTPUT
+            fi
 
   codeql-python:
     needs: detect-languages
