@@ -128,6 +128,8 @@ jobs:
 
   sca:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     
     steps:
       - name: Checkout Repository
@@ -205,7 +207,8 @@ jobs:
           target: 'http://127.0.0.1:8080'  
 
   report-merge:
-    needs: [sca, dast, codeql-java, codeql-python, codeql-js]
+    needs: [sca,dast,codeql-python, codeql-js,codeql-java]
+    if: ${{ always() }}
     runs-on: ubuntu-latest
 
     steps:
