@@ -93,14 +93,14 @@ jobs:
           java-version: '23'  #需要改
           distribution: 'temurin'
           
-      - name: Build Java App
-        run: mvn clean package -DskipTests
-          
       - name: CodeQL Init (Java)
         uses: github/codeql-action/init@v3
         with:
           languages: java
           build-mode: manual
+
+      - name: Build Java App
+        run: mvn clean package -DskipTests
 
       - name: Perform CodeQL Analysis (Java)
         uses: github/codeql-action/analyze@v3
