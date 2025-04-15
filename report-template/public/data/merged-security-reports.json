@@ -1,8 +1,79 @@
 [
   {
+    "tool": "CodeQL",
+    "type": "sast",
+    "timestamp": "2025-04-15T11:35:32.567785+00:00",
+    "target": "source-code",
+    "results": [
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/xss-through-dom",
+        "message": "[DOM text](1) is reinterpreted as HTML without escaping meta-characters.",
+        "file": "src/main/resources/lessons/htmltampering/html/HtmlTampering.html"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/html-constructed-from-input",
+        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
+        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/html-constructed-from-input",
+        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
+        "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/html-constructed-from-input",
+        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
+        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/html-constructed-from-input",
+        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
+        "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/unsafe-jquery-plugin",
+        "message": "Potential XSS vulnerability in the ['$.fn.ajaxSubmit' plugin](1).",
+        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/unsafe-jquery-plugin",
+        "message": "Potential XSS vulnerability in the ['$.fn.ajaxSubmit' plugin](1).",
+        "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/incomplete-sanitization",
+        "message": "This does not escape backslash characters in the input.",
+        "file": "src/main/resources/webgoat/static/js/libs/jquery-ui-1.10.4.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/incomplete-sanitization",
+        "message": "This does not escape backslash characters in the input.",
+        "file": "src/main/resources/webgoat/static/js/libs/jquery-ui-1.10.4.js"
+      }
+    ]
+  },
+  {
     "tool": "Trivy",
     "type": "sca-fs",
-    "timestamp": "2025-04-15T11:18:38.817017+00:00",
+    "timestamp": "2025-04-15T11:35:32.572051+00:00",
     "target": "file:///home/runner/work/WebGoat-T/WebGoat-T/",
     "results": [
       {
@@ -460,7 +531,7 @@
   {
     "tool": "Trivy",
     "type": "sca-image",
-    "timestamp": "2025-04-15T11:18:38.820031+00:00",
+    "timestamp": "2025-04-15T11:35:32.573913+00:00",
     "target": "file:///",
     "results": [
       {
@@ -1978,7 +2049,7 @@
   {
     "tool": "OWASP ZAP",
     "type": "dast",
-    "timestamp": "2025-04-15T11:18:38.820196+00:00",
+    "timestamp": "2025-04-15T11:35:32.574067+00:00",
     "target": "N/A",
     "results": [
       {
@@ -1987,7 +2058,7 @@
         "name": "Content Security Policy (CSP) Header Not Set",
         "risk": "Medium (High)",
         "description": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
-        "uri": "http://127.0.0.1:8080/robots.txt",
+        "uri": "http://127.0.0.1:8080",
         "evidence": "",
         "solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.</p>",
         "cwe": "693"
