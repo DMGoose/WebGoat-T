@@ -2,7 +2,358 @@
   {
     "tool": "CodeQL",
     "type": "sast",
-    "timestamp": "2025-04-15T11:35:32.567785+00:00",
+    "timestamp": "2025-04-15T11:51:29.024846+00:00",
+    "target": "source-code",
+    "results": [
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/polynomial-redos",
+        "message": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings with many repetitions of ' '.\nThis [regular expression](3) that depends on a [user-provided value](2) may run slow on strings starting with 'union' and with many repetitions of 'union('.\nThis [regular expression](1) that depends on a [user-provided value](4) may run slow on strings with many repetitions of ' '.\nThis [regular expression](3) that depends on a [user-provided value](4) may run slow on strings starting with 'union' and with many repetitions of 'union('.\nThis [regular expression](1) that depends on a [user-provided value](5) may run slow on strings with many repetitions of ' '.\nThis [regular expression](3) that depends on a [user-provided value](5) may run slow on strings starting with 'union' and with many repetitions of 'union('.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/advanced/SqlInjectionLesson6a.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/polynomial-redos",
+        "message": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '<' and with many repetitions of '<'.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/mitigation/SqlInjectionLesson10b.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/polynomial-redos",
+        "message": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '<script>alert(' and with many repetitions of '<script>alert('.\nThis [regular expression](3) that depends on a [user-provided value](2) may run slow on strings starting with '<script>alert()</script>' and with many repetitions of ')</script>'.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/xss/CrossSiteScriptingLesson5a.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/polynomial-redos",
+        "message": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '<script>alert(' and with many repetitions of '<script>alert('.\nThis [regular expression](3) that depends on a [user-provided value](2) may run slow on strings starting with '<script>alert()</script>' and with many repetitions of ')</script>'.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/xss/CrossSiteScriptingLesson5a.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/polynomial-redos",
+        "message": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '<' and with many repetitions of '<'.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/xss/mitigation/CrossSiteScriptingLesson4.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/unsafe-deserialization",
+        "message": "Unsafe deserialization depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/deserialization/InsecureDeserializationTask.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/unsafe-deserialization",
+        "message": "Unsafe deserialization depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/vulnerablecomponents/VulnerableComponentsLesson.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/insecure-randomness",
+        "message": "Potential Insecure randomness due to a [Insecure randomness source.](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTRefreshEndpoint.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/it/java/org/owasp/webgoat/integration/JWTLessonIntegrationTest.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTRefreshEndpoint.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTRefreshEndpoint.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/jwt/JWTVotesEndpoint.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/test/java/org/owasp/webgoat/lessons/jwt/TokenTest.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/missing-jwt-signature-check",
+        "message": "This parser sets a [JWT signing key](1), but the signature is not verified.",
+        "file": "src/test/java/org/owasp/webgoat/lessons/jwt/TokenTest.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/xxe",
+        "message": "XML parsing depends on a [user-provided value](1) without guarding against external entity expansion.\nXML parsing depends on a [user-provided value](2) without guarding against external entity expansion.\nXML parsing depends on a [user-provided value](3) without guarding against external entity expansion.",
+        "file": "src/main/java/org/owasp/webgoat/lessons/xxe/CommentsCache.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).\nThis path depends on a [user-provided value](3).\nThis path depends on a [user-provided value](4).\nThis path depends on a [user-provided value](5).\nThis path depends on a [user-provided value](6).\nThis path depends on a [user-provided value](7).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadBase.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).\nThis path depends on a [user-provided value](3).\nThis path depends on a [user-provided value](4).\nThis path depends on a [user-provided value](5).\nThis path depends on a [user-provided value](6).\nThis path depends on a [user-provided value](7).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadBase.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).\nThis path depends on a [user-provided value](3).\nThis path depends on a [user-provided value](4).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadBase.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).\nThis path depends on a [user-provided value](3).\nThis path depends on a [user-provided value](4).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadBase.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileZipSlip.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileZipSlip.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).\nThis path depends on a [user-provided value](3).\nThis path depends on a [user-provided value](4).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadBase.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/xxe/BlindSendFileAssignment.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/xxe/BlindSendFileAssignment.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/xxe/BlindSendFileAssignment.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+        "file": "src/main/java/org/owasp/webgoat/webwolf/FileServer.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/path-injection",
+        "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+        "file": "src/main/java/org/owasp/webgoat/webwolf/FileServer.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/zipslip",
+        "message": "Unsanitized archive entry, which may contain '..', is used in a [file system operation](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileZipSlip.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/spring-disabled-csrf-protection",
+        "message": "CSRF vulnerability due to protection being disabled.",
+        "file": "src/main/java/org/owasp/webgoat/container/WebSecurityConfig.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/spring-disabled-csrf-protection",
+        "message": "CSRF vulnerability due to protection being disabled.",
+        "file": "src/main/java/org/owasp/webgoat/webwolf/WebSecurityConfig.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/container/users/UserService.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).\nThis query depends on a [user-provided value](2).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/challenges/challenge5/Assignment5.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/jwt/claimmisuse/JWTHeaderKIDEndpoint.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/advanced/SqlInjectionChallenge.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).\nThis query depends on a [user-provided value](2).\nThis query depends on a [user-provided value](3).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/advanced/SqlInjectionLesson6a.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson2.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson3.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson10.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson4.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson5.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).\nThis query depends on a [user-provided value](2).\nThis query depends on a [user-provided value](3).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson5a.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson5b.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).\nThis query depends on a [user-provided value](2).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson8.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).\nThis query depends on a [user-provided value](2).\nThis query depends on a [user-provided value](3).\nThis query depends on a [user-provided value](4).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson8.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).\nThis query depends on a [user-provided value](2).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/introduction/SqlInjectionLesson9.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/sql-injection",
+        "message": "This query depends on a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/sqlinjection/mitigation/Servers.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "java/ssrf",
+        "message": "Potential server-side request forgery due to a [user-provided value](1).",
+        "file": "src/main/java/org/owasp/webgoat/lessons/ssrf/SSRFTask2.java"
+      }
+    ]
+  },
+  {
+    "tool": "CodeQL",
+    "type": "sast",
+    "timestamp": "2025-04-15T11:51:29.031699+00:00",
     "target": "source-code",
     "results": [
       {
@@ -17,13 +368,6 @@
         "type": "sast",
         "rule_id": "js/html-constructed-from-input",
         "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
-        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
-      },
-      {
-        "tool": "CodeQL",
-        "type": "sast",
-        "rule_id": "js/html-constructed-from-input",
-        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
         "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
       },
       {
@@ -43,8 +387,8 @@
       {
         "tool": "CodeQL",
         "type": "sast",
-        "rule_id": "js/unsafe-jquery-plugin",
-        "message": "Potential XSS vulnerability in the ['$.fn.ajaxSubmit' plugin](1).",
+        "rule_id": "js/html-constructed-from-input",
+        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
         "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
       },
       {
@@ -53,6 +397,13 @@
         "rule_id": "js/unsafe-jquery-plugin",
         "message": "Potential XSS vulnerability in the ['$.fn.ajaxSubmit' plugin](1).",
         "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "sast",
+        "rule_id": "js/unsafe-jquery-plugin",
+        "message": "Potential XSS vulnerability in the ['$.fn.ajaxSubmit' plugin](1).",
+        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
       },
       {
         "tool": "CodeQL",
@@ -73,7 +424,7 @@
   {
     "tool": "Trivy",
     "type": "sca-fs",
-    "timestamp": "2025-04-15T11:35:32.572051+00:00",
+    "timestamp": "2025-04-15T11:51:29.035701+00:00",
     "target": "file:///home/runner/work/WebGoat-T/WebGoat-T/",
     "results": [
       {
@@ -531,7 +882,7 @@
   {
     "tool": "Trivy",
     "type": "sca-image",
-    "timestamp": "2025-04-15T11:35:32.573913+00:00",
+    "timestamp": "2025-04-15T11:51:29.037447+00:00",
     "target": "file:///",
     "results": [
       {
@@ -2049,7 +2400,7 @@
   {
     "tool": "OWASP ZAP",
     "type": "dast",
-    "timestamp": "2025-04-15T11:35:32.574067+00:00",
+    "timestamp": "2025-04-15T11:51:29.037601+00:00",
     "target": "N/A",
     "results": [
       {
