@@ -11,22 +11,34 @@ def parse_codeql_sarif(sarif_path):
 
     for run in sarif.get("runs", []):
         tool_info = run.get("tool", {}).get("driver", {}).get("name", "CodeQL")
+        rules_map = {rule.get("id"): rule for rule in run.get("tool", {}).get("driver", {}).get("rules", [])}
+
         for result in run.get("results", []):
             rule_id = result.get("ruleId", "")
             message = result.get("message", {}).get("text", "")
             locations = result.get("locations", [])
             uri = locations[0].get("physicalLocation", {}).get("artifactLocation", {}).get("uri", "") if locations else ""
 
+            rule = rules_map.get(rule_id, {})
+            short_desc = rule.get("shortDescription", {}).get("text", "")
+            full_desc = rule.get("fullDescription", {}).get("text", "")
+            help_markdown = rule.get("help", {}).get("markdown", "")
+            help_uri = rule.get("helpUri", "")
+
             results.append({
                 "tool": tool_info,
                 "type": "sast",
                 "rule_id": rule_id,
                 "message": message,
+                "short_description": short_desc,
+                "full_description": full_desc,
+                "remediation": help_markdown,
+                "reference": help_uri,
                 "file": uri,
             })
 
     if not results:
-        return None  # 跳过无 results 的文件
+        return None
 
     return {
         "tool": tool_name,
@@ -36,11 +48,11 @@ def parse_codeql_sarif(sarif_path):
         "results": results
     }
 
-# Collect all codeql sarif files and skip those without results
+# Collect and parse CodeQL SARIF files from the "codeql" directory
 codeql_reports = []
 for root, dirs, files in os.walk("codeql"):
     for file in files:
-        if file.endswith(".sarif"):
+        if "codeql" in file.lower() and file.endswith(".sarif"):
             full_path = os.path.join(root, file)
             parsed = parse_codeql_sarif(full_path)
             if parsed:
