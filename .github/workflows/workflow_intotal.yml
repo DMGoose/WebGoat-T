@@ -11,6 +11,7 @@ on:
 
 jobs:
   detect-languages:
+
     runs-on: ubuntu-latest
     outputs:
       has_python: ${{ steps.check.outputs.has_python }}
@@ -42,6 +43,10 @@ jobs:
             fi
 
   codeql-python:
+    permissions:
+      actions: read
+      contents: read
+      security-events: write  # ✅ 必须加上这个
     needs: detect-languages
     if: needs.detect-languages.outputs.has_python == 'true'
     runs-on: ubuntu-latest
@@ -62,6 +67,10 @@ jobs:
 
   codeql-js:
     needs: detect-languages
+    permissions:
+      actions: read
+      contents: read
+      security-events: write  # ✅ 必须加上这个
     if: needs.detect-languages.outputs.has_js == 'true'
     runs-on: ubuntu-latest
     name: CodeQL (JS/TS)
@@ -81,6 +90,10 @@ jobs:
 
   codeql-java:
     needs: detect-languages
+    permissions:
+      actions: read
+      contents: read
+      security-events: write  # ✅ 必须加上这个
     if: needs.detect-languages.outputs.has_java == 'true'
     runs-on: ubuntu-latest
     name: CodeQL (Java)
