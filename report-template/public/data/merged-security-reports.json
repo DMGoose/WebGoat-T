@@ -1,0 +1,2063 @@
+[
+  {
+    "tool": "Trivy",
+    "type": "sca-fs",
+    "timestamp": "2025-04-15T11:18:38.817017+00:00",
+    "target": "file:///home/runner/work/WebGoat-T/WebGoat-T/",
+    "results": [
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2013-7285",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "9.8",
+        "description": "XStream: remote code execution due to insecure XML deserialization",
+        "remediation": "Xstream API versions up to 1.4.6 and version 1.4.10, if the security framework has not been initialized, may allow a remote attacker to run arbitrary shell commands by manipulating the processed input stream when unmarshaling XML or any supported format. e.g. JSON.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2013-7285"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2019-10173",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "9.8",
+        "description": "xstream: remote code execution due to insecure XML deserialization (regression of  CVE-2013-7285)",
+        "remediation": "It was found that xstream API version 1.4.10 before 1.4.11 introduced a regression for a previous deserialization flaw. If the security framework has not been initialized, it may allow a remote attacker to run arbitrary shell commands when unmarshalling XML or any supported format. e.g. JSON. (regression of CVE-2013-7285)",
+        "reference": "https://avd.aquasec.com/nvd/cve-2019-10173"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2016-3674",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: enabled processing of external entities",
+        "remediation": "Multiple XML external entity (XXE) vulnerabilities in the (1) Dom4JDriver, (2) DomDriver, (3) JDomDriver, (4) JDom2Driver, (5) SjsxpDriver, (6) StandardStaxDriver, and (7) WstxDriver drivers in XStream before 1.4.9 allow remote attackers to read arbitrary files via a crafted XML document.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2016-3674"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2017-7957",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: DoS when unmarshalling void type",
+        "remediation": "XStream through 1.4.9, when a certain denyTypes workaround is not used, mishandles attempts to create an instance of the primitive type 'void' during unmarshalling, leading to a remote application crash, as demonstrated by an xstream.fromXML(\"<void/>\") call.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-7957"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2020-26217",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.1",
+        "description": "XStream: remote code execution due to insecure XML deserialization when relying on blocklists",
+        "remediation": "XStream before version 1.4.14 is vulnerable to Remote Code Execution.The vulnerability may allow a remote attacker to run arbitrary shell commands only by manipulating the processed input stream. Only users who rely on blocklists are affected. Anyone using XStream's Security Framework allowlist is not affected. The linked advisory provides code workarounds for users who cannot upgrade. The issue is fixed in version 1.4.14.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2020-26217"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21341",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: allow a remote attacker to cause DoS only by manipulating the processed input stream",
+        "remediation": "XStream is a Java library to serialize objects to XML and back again. In XStream before version 1.4.16, there is vulnerability which may allow a remote attacker to allocate 100% CPU time on the target system depending on CPU type or parallel execution of such a payload resulting in a denial of service only by manipulating the processed input stream. No user is affected who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the Security Framework, you will have to use at least version 1.4.16.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21341"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-29505",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: remote command execution attack by manipulating the processed input stream",
+        "remediation": "XStream is software for serializing Java objects to XML and back again. A vulnerability in XStream versions prior to 1.4.17 may allow a remote attacker has sufficient rights to execute commands of the host only by manipulating the processed input stream. No user who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types is affected. The vulnerability is patched in version 1.4.17.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-29505"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39139",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of Xalan xsltc.trax.TemplatesImpl",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. A user is only affected if using the version out of the box with JDK 1.7u21 or below. However, this scenario can be adjusted easily to an external Xalan that works regardless of the version of the Java runtime. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39139"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39141",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.xml.internal.ws.client.sei.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39141"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39144",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of sun.tracing.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker has sufficient rights to execute commands of the host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39144"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39145",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.ldap.LdapBindingEnumeration",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39145"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39146",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of javax.swing.UIDefaults$ProxyLazyValue",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39146"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39147",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.ldap.LdapSearchEnumeration",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39147"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39148",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.toolkit.dir.ContextEnumerator",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39148"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39149",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.corba.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39149"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39150",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Server-side request forgery (SSRF) via unsafe deserialization of com.sun.xml.internal.ws.client.sei.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to request data from internal resources that are not publicly available only by manipulating the processed input stream with a Java runtime version 14 to 8. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the [Security Framework](https://x-stream.github.io/security.html#framework), you will have to use at least version 1.4.18.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39150"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39151",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.ldap.LdapBindingEnumeration",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39151"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39152",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Server-side request forgery (SSRF) via unsafe deserialization of jdk.nashorn.internal.runtime.Source$URLData",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to request data from internal resources that are not publicly available only by manipulating the processed input stream with a Java runtime version 14 to 8. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the [Security Framework](https://x-stream.github.io/security.html#framework), you will have to use at least version 1.4.18.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39152"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39153",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of Xalan xsltc.trax.TemplatesImpl",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream, if using the version out of the box with Java runtime version 14 to 8 or with JavaFX installed. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39154",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of javax.swing.UIDefaults$ProxyLazyValue",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39154"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-43859",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "xstream: Injecting highly recursive collections or maps can cause a DoS",
+        "remediation": "XStream is an open source java library to serialize objects to XML and back again. Versions prior to 1.4.19 may allow a remote attacker to allocate 100% CPU time on the target system depending on CPU type or parallel execution of such a payload resulting in a denial of service only by manipulating the processed input stream. XStream 1.4.19 monitors and accumulates the time it takes to add elements to collections and throws an exception if a set threshold is exceeded. Users are advised to upgrade as soon as possible. Users unable to upgrade may set the NO_REFERENCE mode to prevent recursion. See GHSA-rmr5-cpv2-vgjf for further details on a workaround if an upgrade is not possible.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-43859"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2022-40151",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "xstream: Xstream to serialise XML data was vulnerable to Denial of Service attacks",
+        "remediation": "Those using Xstream to seralize XML data may be vulnerable to Denial of Service attacks (DOS). If the parser is running on user supplied input, an attacker may supply content that causes the parser to crash by stackoverflow. This effect may support a denial of service attack.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-40151"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2022-41966",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.2",
+        "description": "xstream: Denial of Service by injecting recursive collections or maps based on element&#39;s hash values raising a stack overflow",
+        "remediation": "XStream serializes Java objects to XML and back again. Versions prior to 1.4.20 may allow a remote attacker to terminate the application with a stack overflow error, resulting in a denial of service only via manipulation the processed input stream. The attack uses the hash code implementation for collections and maps to force recursive hash calculation causing a stack overflow. This issue is patched in version 1.4.20 which handles the stack overflow and raises an InputManipulationException instead. A potential workaround for users who only use HashMap or HashSet and whose XML refers these only as default map or set, is to change the default implementation of java.util.Map and java.util per the code example in the referenced advisory. However, this implies that your application does not care about the implementation of the map and all elements are comparable.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-41966"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2024-47072",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "com.thoughtworks.xstream: XStream is vulnerable to a Denial of Service attack due to stack overflow from a manipulated binary input stream",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. This vulnerability may allow a remote attacker to terminate the application with a stack overflow error resulting in a denial of service only by manipulating the processed input stream when XStream is configured to use the BinaryStreamDriver. XStream 1.4.21 has been patched to detect the manipulation in the binary input stream causing the the stack overflow and raises an InputManipulationException instead. Users are advised to upgrade. Users unable to upgrade may catch the StackOverflowError in the client code calling XStream if XStream is configured to use the BinaryStreamDriver.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-47072"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2020-26258",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.3",
+        "description": "XStream: Server-Side Forgery Request vulnerability can be activated when unmarshalling",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2020-26258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2020-26259",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.8",
+        "description": "XStream: arbitrary file deletion on the local host when unmarshalling",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2020-26259"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21342",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: SSRF via crafted input stream",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21342"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21343",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: arbitrary file deletion on the local host via crafted input stream",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21343"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21344",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: Unsafe deserizaliation of javax.sql.rowset.BaseRowSet",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21344"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21345",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.8",
+        "description": "XStream: Unsafe deserizaliation of com.sun.corba.se.impl.activation.ServerTableEntry",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21345"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21346",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.1",
+        "description": "XStream: Unsafe deserizaliation of sun.swing.SwingLazyValue",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21346"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21347",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.1",
+        "description": "XStream: Unsafe deserizaliation of com.sun.tools.javac.processing.JavacProcessingEnvironment NameProcessIterator",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21347"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21348",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: ReDoS vulnerability",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21348"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21349",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.1",
+        "description": "XStream: SSRF can be activated unmarshalling with XStream to access data streams from an arbitrary URL referencing a resource in an intranet or the local host",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21349"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21350",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: Unsafe deserizaliation of com.sun.org.apache.bcel.internal.util.ClassLoader",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21350"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-21351",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.4",
+        "description": "XStream: allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21351"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2021-39140",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.5",
+        "description": "xstream: Infinite loop DoS via unsafe deserialization of sun.reflect.annotation.AnnotationInvocationHandler",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39140"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "CVE-2023-51775",
+        "component": "org.bitbucket.b_c:jose4j",
+        "severity": "6.5",
+        "description": "jose4j: denial of service via specially crafted JWE",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2023-51775"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "jwt-token",
+        "component": "Secret JWT token",
+        "severity": "5.5",
+        "description": "JWT token",
+        "remediation": "",
+        "reference": "https://github.com/aquasecurity/trivy/blob/main/pkg/fanal/secret/builtin-rules.go"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "jwt-token",
+        "component": "Secret JWT token",
+        "severity": "5.5",
+        "description": "JWT token",
+        "remediation": "",
+        "reference": "https://github.com/aquasecurity/trivy/blob/main/pkg/fanal/secret/builtin-rules.go"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "jwt-token",
+        "component": "Secret JWT token",
+        "severity": "5.5",
+        "description": "JWT token",
+        "remediation": "",
+        "reference": "https://github.com/aquasecurity/trivy/blob/main/pkg/fanal/secret/builtin-rules.go"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "jwt-token",
+        "component": "Secret JWT token",
+        "severity": "5.5",
+        "description": "JWT token",
+        "remediation": "",
+        "reference": "https://github.com/aquasecurity/trivy/blob/main/pkg/fanal/secret/builtin-rules.go"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "jwt-token",
+        "component": "Secret JWT token",
+        "severity": "5.5",
+        "description": "JWT token",
+        "remediation": "",
+        "reference": "https://github.com/aquasecurity/trivy/blob/main/pkg/fanal/secret/builtin-rules.go"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "jwt-token",
+        "component": "Secret JWT token",
+        "severity": "5.5",
+        "description": "JWT token",
+        "remediation": "",
+        "reference": "https://github.com/aquasecurity/trivy/blob/main/pkg/fanal/secret/builtin-rules.go"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-fs",
+        "cve": "jwt-token",
+        "component": "Secret JWT token",
+        "severity": "5.5",
+        "description": "JWT token",
+        "remediation": "",
+        "reference": "https://github.com/aquasecurity/trivy/blob/main/pkg/fanal/secret/builtin-rules.go"
+      }
+    ]
+  },
+  {
+    "tool": "Trivy",
+    "type": "sca-image",
+    "timestamp": "2025-04-15T11:18:38.820031+00:00",
+    "target": "file:///",
+    "results": [
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2016-2781",
+        "component": "coreutils",
+        "severity": "2.0",
+        "description": "coreutils: Non-privileged session can escape to the parent session in chroot",
+        "remediation": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2016-2781"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-30258",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0395",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: buffer overflow in the GNU C Library&#39;s assert()",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0395"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2016-20013",
+        "component": "locales",
+        "severity": "2.0",
+        "description": "",
+        "remediation": "sha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm's runtime is proportional to the square of the length of the password.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2016-20013"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0395",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: buffer overflow in the GNU C Library&#39;s assert()",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0395"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2016-20013",
+        "component": "locales",
+        "severity": "2.0",
+        "description": "",
+        "remediation": "sha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm's runtime is proportional to the square of the length of the password.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2016-20013"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1390",
+        "component": "libcap2",
+        "severity": "5.5",
+        "description": "libcap: pam_cap: Fix potential configuration parsing error",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1390"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-8176",
+        "component": "libexpat1",
+        "severity": "5.5",
+        "description": "libexpat: expat: Improper Restriction of XML Entity Expansion Depth in libexpat",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-8176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-23022",
+        "component": "libfreetype6",
+        "severity": "5.5",
+        "description": "freetype: signed integer overflow in cf2_doFlex",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-23022"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-2236",
+        "component": "libgcrypt20",
+        "severity": "2.0",
+        "description": "libgcrypt: vulnerable to Marvin Attack",
+        "remediation": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-2236"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-12243",
+        "component": "libgnutls30t64",
+        "severity": "5.5",
+        "description": "gnutls: GnuTLS Impacted by Inefficient DER Decoding in libtasn1 Leading to Remote DoS",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-12243"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-31115",
+        "component": "liblzma5",
+        "severity": "5.5",
+        "description": "xz: XZ has a heap-use-after-free bug in threaded .xz decoder",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-31115"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10041",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: libpam: Libpam vulnerable to read hashed password",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10041"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10963",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: Improper Hostname Interpretation in pam_access Leads to Access Control Bypass",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10963"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10041",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: libpam: Libpam vulnerable to read hashed password",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10041"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10963",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: Improper Hostname Interpretation in pam_access Leads to Access Control Bypass",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10963"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10041",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: libpam: Libpam vulnerable to read hashed password",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10041"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10963",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: Improper Hostname Interpretation in pam_access Leads to Access Control Bypass",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10963"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10041",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: libpam: Libpam vulnerable to read hashed password",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10041"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-10963",
+        "component": "libpam0g",
+        "severity": "5.5",
+        "description": "pam: Improper Hostname Interpretation in pam_access Leads to Access Control Bypass",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-10963"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-57360",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: nm: potential segmentation fault when displaying symbols without version info",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-57360"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0840",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils objdump.c disassemble_bytes stack-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0840"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1176",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec heap-based overflow",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1178",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld libbfd.c bfd_putl64 memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1178"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1181",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c _bfd_elf_gc_mark_rsec memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1181"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1182",
+        "component": "libsframe1",
+        "severity": "5.5",
+        "description": "binutils: GNU Binutils ld elflink.c bfd_elf_reloc_symbol_deleted_p memory corruption",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1182"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-13716",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+        "remediation": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd).",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-13716"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-1153",
+        "component": "libsframe1",
+        "severity": "2.0",
+        "description": "binutils: GNU Binutils format.c bfd_set_format memory corruption",
+        "remediation": "A vulnerability classified as problematic was found in GNU Binutils 2.43/2.44. Affected by this vulnerability is the function bfd_set_format of the file format.c. The manipulation leads to memory corruption. The attack can be launched remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. Upgrading to version 2.45 is able to address this issue. The identifier of the patch is 8d97c1a53f3dc9fd8e1ccdb039b8a33d50133150. It is recommended to upgrade the affected component.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-1153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-13176",
+        "component": "openssl",
+        "severity": "2.0",
+        "description": "openssl: Timing side-channel in ECDSA signature computation",
+        "remediation": "The FIPS modules in 3.4, 3.3, 3.2, 3.1 and 3.0 are affected by this issue.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-13176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-41996",
+        "component": "openssl",
+        "severity": "2.0",
+        "description": "openssl: remote attackers (from the client side) to trigger unnecessarily expensive server-side DHE modular-exponentiation calculations",
+        "remediation": "Validating the order of the public keys in the Diffie-Hellman Key Agreement Protocol, when an approved safe prime is used, allows remote attackers (from the client side) to trigger unnecessarily expensive server-side DHE modular-exponentiation calculations. The client may cause asymmetric resource consumption. The basic attack scenario is that the client must claim that it can only communicate with DHE, and the server must be configured to allow DHE and validate the order of the public key.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-41996"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-9143",
+        "component": "openssl",
+        "severity": "2.0",
+        "description": "openssl: Low-level invalid GF(2^m) parameters lead to OOB memory access",
+        "remediation": "The FIPS modules in 3.3, 3.2, 3.1 and 3.0 are not affected by this issue.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-9143"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-12133",
+        "component": "libtasn1-6",
+        "severity": "5.5",
+        "description": "libtasn1: Inefficient DER Decoding in libtasn1 Leading to Potential Remote DoS",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-12133"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2025-0395",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: buffer overflow in the GNU C Library&#39;s assert()",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-0395"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2016-20013",
+        "component": "locales",
+        "severity": "2.0",
+        "description": "",
+        "remediation": "sha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm's runtime is proportional to the square of the length of the password.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2016-20013"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-56433",
+        "component": "passwd",
+        "severity": "2.0",
+        "description": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+        "remediation": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-56433"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-13176",
+        "component": "openssl",
+        "severity": "2.0",
+        "description": "openssl: Timing side-channel in ECDSA signature computation",
+        "remediation": "The FIPS modules in 3.4, 3.3, 3.2, 3.1 and 3.0 are affected by this issue.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-13176"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-41996",
+        "component": "openssl",
+        "severity": "2.0",
+        "description": "openssl: remote attackers (from the client side) to trigger unnecessarily expensive server-side DHE modular-exponentiation calculations",
+        "remediation": "Validating the order of the public keys in the Diffie-Hellman Key Agreement Protocol, when an approved safe prime is used, allows remote attackers (from the client side) to trigger unnecessarily expensive server-side DHE modular-exponentiation calculations. The client may cause asymmetric resource consumption. The basic attack scenario is that the client must claim that it can only communicate with DHE, and the server must be configured to allow DHE and validate the order of the public key.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-41996"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-9143",
+        "component": "openssl",
+        "severity": "2.0",
+        "description": "openssl: Low-level invalid GF(2^m) parameters lead to OOB memory access",
+        "remediation": "The FIPS modules in 3.3, 3.2, 3.1 and 3.0 are not affected by this issue.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-9143"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-56433",
+        "component": "passwd",
+        "severity": "2.0",
+        "description": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+        "remediation": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-56433"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-31879",
+        "component": "wget",
+        "severity": "5.5",
+        "description": "wget: authorization header disclosure on redirect",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-31879"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2013-7285",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "9.8",
+        "description": "XStream: remote code execution due to insecure XML deserialization",
+        "remediation": "Xstream API versions up to 1.4.6 and version 1.4.10, if the security framework has not been initialized, may allow a remote attacker to run arbitrary shell commands by manipulating the processed input stream when unmarshaling XML or any supported format. e.g. JSON.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2013-7285"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2019-10173",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "9.8",
+        "description": "xstream: remote code execution due to insecure XML deserialization (regression of  CVE-2013-7285)",
+        "remediation": "It was found that xstream API version 1.4.10 before 1.4.11 introduced a regression for a previous deserialization flaw. If the security framework has not been initialized, it may allow a remote attacker to run arbitrary shell commands when unmarshalling XML or any supported format. e.g. JSON. (regression of CVE-2013-7285)",
+        "reference": "https://avd.aquasec.com/nvd/cve-2019-10173"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2016-3674",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: enabled processing of external entities",
+        "remediation": "Multiple XML external entity (XXE) vulnerabilities in the (1) Dom4JDriver, (2) DomDriver, (3) JDomDriver, (4) JDom2Driver, (5) SjsxpDriver, (6) StandardStaxDriver, and (7) WstxDriver drivers in XStream before 1.4.9 allow remote attackers to read arbitrary files via a crafted XML document.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2016-3674"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2017-7957",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: DoS when unmarshalling void type",
+        "remediation": "XStream through 1.4.9, when a certain denyTypes workaround is not used, mishandles attempts to create an instance of the primitive type 'void' during unmarshalling, leading to a remote application crash, as demonstrated by an xstream.fromXML(\"<void/>\") call.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2017-7957"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2020-26217",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.1",
+        "description": "XStream: remote code execution due to insecure XML deserialization when relying on blocklists",
+        "remediation": "XStream before version 1.4.14 is vulnerable to Remote Code Execution.The vulnerability may allow a remote attacker to run arbitrary shell commands only by manipulating the processed input stream. Only users who rely on blocklists are affected. Anyone using XStream's Security Framework allowlist is not affected. The linked advisory provides code workarounds for users who cannot upgrade. The issue is fixed in version 1.4.14.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2020-26217"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21341",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: allow a remote attacker to cause DoS only by manipulating the processed input stream",
+        "remediation": "XStream is a Java library to serialize objects to XML and back again. In XStream before version 1.4.16, there is vulnerability which may allow a remote attacker to allocate 100% CPU time on the target system depending on CPU type or parallel execution of such a payload resulting in a denial of service only by manipulating the processed input stream. No user is affected who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the Security Framework, you will have to use at least version 1.4.16.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21341"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-29505",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "XStream: remote command execution attack by manipulating the processed input stream",
+        "remediation": "XStream is software for serializing Java objects to XML and back again. A vulnerability in XStream versions prior to 1.4.17 may allow a remote attacker has sufficient rights to execute commands of the host only by manipulating the processed input stream. No user who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types is affected. The vulnerability is patched in version 1.4.17.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-29505"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39139",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of Xalan xsltc.trax.TemplatesImpl",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. A user is only affected if using the version out of the box with JDK 1.7u21 or below. However, this scenario can be adjusted easily to an external Xalan that works regardless of the version of the Java runtime. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39139"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39141",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.xml.internal.ws.client.sei.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39141"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39144",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of sun.tracing.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker has sufficient rights to execute commands of the host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39144"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39145",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.ldap.LdapBindingEnumeration",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39145"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39146",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of javax.swing.UIDefaults$ProxyLazyValue",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39146"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39147",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.ldap.LdapSearchEnumeration",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39147"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39148",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.toolkit.dir.ContextEnumerator",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39148"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39149",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.corba.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39149"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39150",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Server-side request forgery (SSRF) via unsafe deserialization of com.sun.xml.internal.ws.client.sei.*",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to request data from internal resources that are not publicly available only by manipulating the processed input stream with a Java runtime version 14 to 8. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the [Security Framework](https://x-stream.github.io/security.html#framework), you will have to use at least version 1.4.18.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39150"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39151",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of com.sun.jndi.ldap.LdapBindingEnumeration",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39151"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39152",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Server-side request forgery (SSRF) via unsafe deserialization of jdk.nashorn.internal.runtime.Source$URLData",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to request data from internal resources that are not publicly available only by manipulating the processed input stream with a Java runtime version 14 to 8. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. If you rely on XStream's default blacklist of the [Security Framework](https://x-stream.github.io/security.html#framework), you will have to use at least version 1.4.18.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39152"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39153",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of Xalan xsltc.trax.TemplatesImpl",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream, if using the version out of the box with Java runtime version 14 to 8 or with JavaFX installed. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39153"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39154",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.6",
+        "description": "xstream: Arbitrary code execution via unsafe deserialization of javax.swing.UIDefaults$ProxyLazyValue",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. In affected versions this vulnerability may allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream. No user is affected, who followed the recommendation to setup XStream's security framework with a whitelist limited to the minimal required types. XStream 1.4.18 uses no longer a blacklist by default, since it cannot be secured for general purpose.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39154"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-43859",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "xstream: Injecting highly recursive collections or maps can cause a DoS",
+        "remediation": "XStream is an open source java library to serialize objects to XML and back again. Versions prior to 1.4.19 may allow a remote attacker to allocate 100% CPU time on the target system depending on CPU type or parallel execution of such a payload resulting in a denial of service only by manipulating the processed input stream. XStream 1.4.19 monitors and accumulates the time it takes to add elements to collections and throws an exception if a set threshold is exceeded. Users are advised to upgrade as soon as possible. Users unable to upgrade may set the NO_REFERENCE mode to prevent recursion. See GHSA-rmr5-cpv2-vgjf for further details on a workaround if an upgrade is not possible.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-43859"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-40151",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "xstream: Xstream to serialise XML data was vulnerable to Denial of Service attacks",
+        "remediation": "Those using Xstream to seralize XML data may be vulnerable to Denial of Service attacks (DOS). If the parser is running on user supplied input, an attacker may supply content that causes the parser to crash by stackoverflow. This effect may support a denial of service attack.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-40151"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2022-41966",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "8.2",
+        "description": "xstream: Denial of Service by injecting recursive collections or maps based on element&#39;s hash values raising a stack overflow",
+        "remediation": "XStream serializes Java objects to XML and back again. Versions prior to 1.4.20 may allow a remote attacker to terminate the application with a stack overflow error, resulting in a denial of service only via manipulation the processed input stream. The attack uses the hash code implementation for collections and maps to force recursive hash calculation causing a stack overflow. This issue is patched in version 1.4.20 which handles the stack overflow and raises an InputManipulationException instead. A potential workaround for users who only use HashMap or HashSet and whose XML refers these only as default map or set, is to change the default implementation of java.util.Map and java.util per the code example in the referenced advisory. However, this implies that your application does not care about the implementation of the map and all elements are comparable.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-41966"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2024-47072",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "7.5",
+        "description": "com.thoughtworks.xstream: XStream is vulnerable to a Denial of Service attack due to stack overflow from a manipulated binary input stream",
+        "remediation": "XStream is a simple library to serialize objects to XML and back again. This vulnerability may allow a remote attacker to terminate the application with a stack overflow error resulting in a denial of service only by manipulating the processed input stream when XStream is configured to use the BinaryStreamDriver. XStream 1.4.21 has been patched to detect the manipulation in the binary input stream causing the the stack overflow and raises an InputManipulationException instead. Users are advised to upgrade. Users unable to upgrade may catch the StackOverflowError in the client code calling XStream if XStream is configured to use the BinaryStreamDriver.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2024-47072"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2020-26258",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.3",
+        "description": "XStream: Server-Side Forgery Request vulnerability can be activated when unmarshalling",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2020-26258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2020-26259",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.8",
+        "description": "XStream: arbitrary file deletion on the local host when unmarshalling",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2020-26259"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21342",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: SSRF via crafted input stream",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21342"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21343",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: arbitrary file deletion on the local host via crafted input stream",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21343"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21344",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: Unsafe deserizaliation of javax.sql.rowset.BaseRowSet",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21344"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21345",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.8",
+        "description": "XStream: Unsafe deserizaliation of com.sun.corba.se.impl.activation.ServerTableEntry",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21345"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21346",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.1",
+        "description": "XStream: Unsafe deserizaliation of sun.swing.SwingLazyValue",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21346"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21347",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.1",
+        "description": "XStream: Unsafe deserizaliation of com.sun.tools.javac.processing.JavacProcessingEnvironment NameProcessIterator",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21347"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21348",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: ReDoS vulnerability",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21348"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21349",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.1",
+        "description": "XStream: SSRF can be activated unmarshalling with XStream to access data streams from an arbitrary URL referencing a resource in an intranet or the local host",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21349"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21350",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.3",
+        "description": "XStream: Unsafe deserizaliation of com.sun.org.apache.bcel.internal.util.ClassLoader",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21350"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-21351",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "5.4",
+        "description": "XStream: allow a remote attacker to load and execute arbitrary code from a remote host only by manipulating the processed input stream",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-21351"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2021-39140",
+        "component": "com.thoughtworks.xstream:xstream",
+        "severity": "6.5",
+        "description": "xstream: Infinite loop DoS via unsafe deserialization of sun.reflect.annotation.AnnotationInvocationHandler",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2021-39140"
+      },
+      {
+        "tool": "Trivy",
+        "type": "sca-image",
+        "cve": "CVE-2023-51775",
+        "component": "org.bitbucket.b_c:jose4j",
+        "severity": "6.5",
+        "description": "jose4j: denial of service via specially crafted JWE",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2023-51775"
+      }
+    ]
+  },
+  {
+    "tool": "OWASP ZAP",
+    "type": "dast",
+    "timestamp": "2025-04-15T11:18:38.820196+00:00",
+    "target": "N/A",
+    "results": [
+      {
+        "tool": "OWASP ZAP",
+        "type": "dast",
+        "name": "Content Security Policy (CSP) Header Not Set",
+        "risk": "Medium (High)",
+        "description": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
+        "uri": "http://127.0.0.1:8080/robots.txt",
+        "evidence": "",
+        "solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.</p>",
+        "cwe": "693"
+      },
+      {
+        "tool": "OWASP ZAP",
+        "type": "dast",
+        "name": "Permissions Policy Header Not Set",
+        "risk": "Low (Medium)",
+        "description": "<p>Permissions Policy Header is an added layer of security that helps to restrict from unauthorized access or usage of browser/client features by web resources. This policy ensures the user privacy by limiting or specifying the features of the browsers can be used by the web resources. Permissions Policy provides a set of standard HTTP headers that allow website owners to limit which features of browsers can be used by the page such as camera, microphone, location, full screen etc.</p>",
+        "uri": "http://127.0.0.1:8080",
+        "evidence": "",
+        "solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Permissions-Policy header.</p>",
+        "cwe": "693"
+      },
+      {
+        "tool": "OWASP ZAP",
+        "type": "dast",
+        "name": "Permissions Policy Header Not Set",
+        "risk": "Low (Medium)",
+        "description": "<p>Permissions Policy Header is an added layer of security that helps to restrict from unauthorized access or usage of browser/client features by web resources. This policy ensures the user privacy by limiting or specifying the features of the browsers can be used by the web resources. Permissions Policy provides a set of standard HTTP headers that allow website owners to limit which features of browsers can be used by the page such as camera, microphone, location, full screen etc.</p>",
+        "uri": "http://127.0.0.1:8080/robots.txt",
+        "evidence": "",
+        "solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Permissions-Policy header.</p>",
+        "cwe": "693"
+      },
+      {
+        "tool": "OWASP ZAP",
+        "type": "dast",
+        "name": "Permissions Policy Header Not Set",
+        "risk": "Low (Medium)",
+        "description": "<p>Permissions Policy Header is an added layer of security that helps to restrict from unauthorized access or usage of browser/client features by web resources. This policy ensures the user privacy by limiting or specifying the features of the browsers can be used by the web resources. Permissions Policy provides a set of standard HTTP headers that allow website owners to limit which features of browsers can be used by the page such as camera, microphone, location, full screen etc.</p>",
+        "uri": "http://127.0.0.1:8080/sitemap.xml",
+        "evidence": "",
+        "solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Permissions-Policy header.</p>",
+        "cwe": "693"
+      },
+      {
+        "tool": "OWASP ZAP",
+        "type": "dast",
+        "name": "Storable and Cacheable Content",
+        "risk": "Informational (Medium)",
+        "description": "<p>The response contents are storable by caching components such as proxy servers, and may be retrieved directly from the cache, rather than from the origin server by the caching servers, in response to similar requests from other users. If the response data is sensitive, personal or user-specific, this may result in sensitive information being leaked. In some cases, this may even result in a user gaining complete control of the session of another user, depending on the configuration of the caching components in use in their environment. This is primarily an issue where \"shared\" caching servers such as \"proxy\" caches are configured on the local network. This configuration is typically found in corporate or educational environments, for instance.</p>",
+        "uri": "http://127.0.0.1:8080",
+        "evidence": "",
+        "solution": "<p>Validate that the response does not contain sensitive, personal or user-specific information. If it does, consider the use of the following HTTP response headers, to limit, or prevent the content being stored and retrieved from the cache by another user:</p><p>Cache-Control: no-cache, no-store, must-revalidate, private</p><p>Pragma: no-cache</p><p>Expires: 0</p><p>This configuration directs both HTTP 1.0 and HTTP 1.1 compliant caching servers to not store the response, and to not retrieve the response (without validation) from the cache, in response to a similar request.</p>",
+        "cwe": "524"
+      },
+      {
+        "tool": "OWASP ZAP",
+        "type": "dast",
+        "name": "Storable and Cacheable Content",
+        "risk": "Informational (Medium)",
+        "description": "<p>The response contents are storable by caching components such as proxy servers, and may be retrieved directly from the cache, rather than from the origin server by the caching servers, in response to similar requests from other users. If the response data is sensitive, personal or user-specific, this may result in sensitive information being leaked. In some cases, this may even result in a user gaining complete control of the session of another user, depending on the configuration of the caching components in use in their environment. This is primarily an issue where \"shared\" caching servers such as \"proxy\" caches are configured on the local network. This configuration is typically found in corporate or educational environments, for instance.</p>",
+        "uri": "http://127.0.0.1:8080/robots.txt",
+        "evidence": "",
+        "solution": "<p>Validate that the response does not contain sensitive, personal or user-specific information. If it does, consider the use of the following HTTP response headers, to limit, or prevent the content being stored and retrieved from the cache by another user:</p><p>Cache-Control: no-cache, no-store, must-revalidate, private</p><p>Pragma: no-cache</p><p>Expires: 0</p><p>This configuration directs both HTTP 1.0 and HTTP 1.1 compliant caching servers to not store the response, and to not retrieve the response (without validation) from the cache, in response to a similar request.</p>",
+        "cwe": "524"
+      },
+      {
+        "tool": "OWASP ZAP",
+        "type": "dast",
+        "name": "Storable and Cacheable Content",
+        "risk": "Informational (Medium)",
+        "description": "<p>The response contents are storable by caching components such as proxy servers, and may be retrieved directly from the cache, rather than from the origin server by the caching servers, in response to similar requests from other users. If the response data is sensitive, personal or user-specific, this may result in sensitive information being leaked. In some cases, this may even result in a user gaining complete control of the session of another user, depending on the configuration of the caching components in use in their environment. This is primarily an issue where \"shared\" caching servers such as \"proxy\" caches are configured on the local network. This configuration is typically found in corporate or educational environments, for instance.</p>",
+        "uri": "http://127.0.0.1:8080/sitemap.xml",
+        "evidence": "",
+        "solution": "<p>Validate that the response does not contain sensitive, personal or user-specific information. If it does, consider the use of the following HTTP response headers, to limit, or prevent the content being stored and retrieved from the cache by another user:</p><p>Cache-Control: no-cache, no-store, must-revalidate, private</p><p>Pragma: no-cache</p><p>Expires: 0</p><p>This configuration directs both HTTP 1.0 and HTTP 1.1 compliant caching servers to not store the response, and to not retrieve the response (without validation) from the cache, in response to a similar request.</p>",
+        "cwe": "524"
+      }
+    ]
+  }
+]
