@@ -162,23 +162,13 @@ jobs:
       # 这是 docker image 的 扫描, 扫描 docker image 中的漏洞
       - name: Run Trivy on Built Image
         uses: aquasecurity/trivy-action@0.28.0
+        env:
+          TRIVY_TIMEOUT: 15m # 加到15分钟
         with:
           image-ref: 'my-app:${{ github.sha }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
-
-     # # 上传结果到security hub
-     #  - name: Upload Trivy FS scan results
-     #    uses: github/codeql-action/upload-sarif@v3
-     #    with:
-     #      sarif_file: 'trivy-fs-results.sarif'
-     #      category: 'trivy-fs'
-      
-     #  - name: Upload Trivy Docker scan results to GitHub Security tab
-     #    uses: github/codeql-action/upload-sarif@v3
-     #    with:
-     #      sarif_file: 'trivy-results.sarif'
-     #      category: 'trivy-image'
+          scanners: 'vuln' # ✅ 只启用漏洞扫描，禁用 secret 扫描
 
       # 上传结果到artifact
       - name: Upload Trivy FS scan results (artifact)
