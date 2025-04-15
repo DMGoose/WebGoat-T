@@ -46,7 +46,7 @@ jobs:
     permissions:
       actions: read
       contents: read
-      security-events: write  # ✅ 必须加上这个
+      security-events: write  
     needs: detect-languages
     if: needs.detect-languages.outputs.has_python == 'true'
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
     permissions:
       actions: read
       contents: read
-      security-events: write  # ✅ 必须加上这个
+      security-events: write  
     if: needs.detect-languages.outputs.has_js == 'true'
     runs-on: ubuntu-latest
     name: CodeQL (JS/TS)
@@ -93,7 +93,7 @@ jobs:
     permissions:
       actions: read
       contents: read
-      security-events: write  # ✅ 必须加上这个
+      security-events: write 
     if: needs.detect-languages.outputs.has_java == 'true'
     runs-on: ubuntu-latest
     name: CodeQL (Java)
@@ -128,8 +128,6 @@ jobs:
 
   sca:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     
     steps:
       - name: Checkout Repository
@@ -145,7 +143,7 @@ jobs:
           output: 'trivy-fs-results.sarif'
 
       # Java用的
-      # ✅ 如果是 Java 项目，则设置 JDK 23（避免“release 23 not supported”）
+      # 如果是 Java 项目，则设置 JDK 23（避免“release 23 not supported”）
       - name: Set up JDK 23
         if: hashFiles('pom.xml') != ''
         uses: actions/setup-java@v3
@@ -170,7 +168,7 @@ jobs:
           image-ref: 'my-app:${{ github.sha }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
-          scanners: 'vuln' # ✅ 只启用漏洞扫描，禁用 secret 扫描
+          scanners: 'vuln' # 只启用漏洞扫描，禁用 secret 扫描
 
       # 上传结果到artifact
       - name: Upload Trivy FS scan results (artifact)
@@ -189,6 +187,8 @@ jobs:
   dast:
     needs: sca
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     
     steps:
       - name: Checkout Repository
@@ -196,7 +196,7 @@ jobs:
 
       - name: Start DVWA with Docker Compose
         run: |
-          docker run -d -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 webgoat/webgoat
+          docker run -d -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 webgoat/webgoat  # 🛑需要修改
           sleep 15  # 给 DVWA 启动一些时间
       - name: List Running Containers (Debug)
         run: docker ps
@@ -204,7 +204,9 @@ jobs:
       - name: ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.14.0
         with:
-          target: 'http://127.0.0.1:8080'  
+          target: 'http://127.0.0.1:8080'   # 🛑需要修改
+          # allow_issue_writing: false
+          # fail_action: false
 
   report-merge:
     needs: [sca,dast,codeql-python, codeql-js,codeql-java]
