@@ -131,7 +131,7 @@ jobs:
     
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 这是fs 的扫描,目录 SCA, 未构建镜像时提前发现问题
       - name: Trivy FS scan
@@ -192,7 +192,7 @@ jobs:
     
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Start DVWA with Docker Compose
         run: |
@@ -215,7 +215,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install GitHub CLI & jq
         run: |
