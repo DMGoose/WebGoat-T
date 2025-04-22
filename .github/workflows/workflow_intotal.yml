@@ -274,6 +274,7 @@ jobs:
 
   upload-report:
     needs: [report-merge]
+    if: ${{ always() }}
     runs-on: ubuntu-latest
 
     steps:
