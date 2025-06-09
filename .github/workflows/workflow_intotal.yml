@@ -135,7 +135,7 @@ jobs:
 
       # 这是fs 的扫描,目录 SCA, 未构建镜像时提前发现问题
       - name: Trivy FS scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.31.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -161,7 +161,7 @@ jobs:
 
       # 这是 docker image 的 扫描, 扫描 docker image 中的漏洞
       - name: Run Trivy on Built Image
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.31.0
         env:
           TRIVY_TIMEOUT: 15m # 加到15分钟
         with:
