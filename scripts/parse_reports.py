@@ -23,6 +23,12 @@ def parse_codeql_sarif(sarif_path):
             for rule in ext.get("rules", []):
                 rules_map[rule.get("id")] = rule  # 覆盖或新增
 
+         # 在规则构建完成后，提取 severity 分数
+        severity_map = {}
+        for rule_id, rule in rules_map.items():
+            props = rule.get("properties", {})
+            severity_map[rule_id] = props.get("security-severity", "N/A")
+
         for result in run.get("results", []):
             rule_id = result.get("ruleId", "")
             message = result.get("message", {}).get("text", "")
@@ -41,6 +47,7 @@ def parse_codeql_sarif(sarif_path):
                 "tool": tool_info,
                 "type": f"SAST-{language_prefix}",
                 "rule_id": rule_id,
+                "severity": severity_map.get(rule_id, "N/A"),
                 "message": message,
                 "short_description": short_desc,
                 "full_description": full_desc,
