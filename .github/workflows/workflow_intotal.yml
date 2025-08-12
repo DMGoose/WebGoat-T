@@ -135,7 +135,7 @@ jobs:
 
       # 这是fs 的扫描,目录 SCA, 未构建镜像时提前发现问题
       - name: Trivy FS scan
-        uses: aquasecurity/trivy-action@<pinned-SHA>
+        uses: aquasecurity/trivy-action@0.28.0
         env:
           TRIVY_TIMEOUT: 15m
         with:
