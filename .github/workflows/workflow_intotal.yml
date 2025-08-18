@@ -19,7 +19,7 @@ jobs:
       has_java: ${{ steps.check.outputs.has_java }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check for source files
         id: check
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     name: CodeQL (Python)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: github/codeql-action/init@v3
         with:
           languages: python
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     name: CodeQL (JS/TS)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: github/codeql-action/init@v3
         with:
           languages: javascript
@@ -98,7 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     name: CodeQL (Java)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Set up JDK 23
         uses: actions/setup-java@v4
@@ -131,7 +131,7 @@ jobs:
     
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # 这是fs 的扫描,目录 SCA, 未构建镜像时提前发现问题
       - name: Trivy FS scan
@@ -194,7 +194,7 @@ jobs:
     
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Start DVWA with Docker Compose
         run: |
@@ -217,7 +217,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install GitHub CLI & jq
         run: |
@@ -281,7 +281,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         
       - name: download merged-security-reports
         uses: actions/download-artifact@v4
