@@ -53,11 +53,11 @@ jobs:
     name: CodeQL (Python)
     steps:
       - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v3
+      - uses: github/codeql-action/init@v4
         with:
           languages: python
           build-mode: none
-      - uses: github/codeql-action/analyze@v3
+      - uses: github/codeql-action/analyze@v4
         with:
           output: codeql-results.sarif
       - uses: actions/upload-artifact@v4
@@ -76,11 +76,11 @@ jobs:
     name: CodeQL (JS/TS)
     steps:
       - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v3
+      - uses: github/codeql-action/init@v4
         with:
           languages: javascript
           build-mode: none
-      - uses: github/codeql-action/analyze@v3
+      - uses: github/codeql-action/analyze@v4
         with:
           output: codeql-results.sarif
       - uses: actions/upload-artifact@v4
@@ -107,7 +107,7 @@ jobs:
           distribution: 'temurin'
           
       - name: CodeQL Init (Java)
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           languages: java
           build-mode: manual
@@ -116,7 +116,7 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Perform CodeQL Analysis (Java)
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
         with:
           output: codeql-java.sarif
 
