@@ -2,7 +2,7 @@
   {
     "tool": "CodeQL",
     "type": "SAST",
-    "timestamp": "2026-02-03T08:00:47.652276+00:00",
+    "timestamp": "2026-02-10T08:10:22.025202+00:00",
     "target": "source-code",
     "results": [
       {
@@ -27,18 +27,6 @@
         "full_description": "Using externally controlled strings to construct HTML might allow a malicious user to perform a cross-site scripting attack.",
         "remediation": "# Unsafe HTML constructed from library input\nWhen a library function dynamically constructs HTML in a potentially unsafe way, then it's important to document to clients of the library that the function should only be used with trusted inputs. If the function is not documented as being potentially unsafe, then a client may inadvertently use inputs containing unsafe HTML fragments, and thereby leave the client vulnerable to cross-site scripting attacks.\n\n\n## Recommendation\nDocument all library functions that can lead to cross-site scripting attacks, and guard against unsafe inputs where dynamic HTML construction is not intended.\n\n\n## Example\nThe following example has a library function that renders a boldface name by writing to the `innerHTML` property of an element.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + name + \"</b>\";\n}\n\n```\nThis library function, however, does not escape unsafe HTML, and a client that calls the function with user-supplied input may be vulnerable to cross-site scripting attacks.\n\nThe library could either document that this function should not be used with unsafe inputs, or use safe APIs such as `innerText`.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  const bold = document.createElement('b');\n  bold.innerText = name;\n  document.getElementById('name').appendChild(bold);\n}\n\n```\nAlternatively, an HTML sanitizer can be used to remove unsafe content.\n\n\n```javascript\n\nconst striptags = require('striptags');\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + striptags(name) + \"</b>\";\n}\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet).\n* OWASP [DOM Based XSS](https://www.owasp.org/index.php/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](http://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
         "reference": "",
-        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
-      },
-      {
-        "tool": "CodeQL",
-        "type": "SAST-js",
-        "rule_id": "js/html-constructed-from-input",
-        "severity": "6.1",
-        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
-        "short_description": "Unsafe HTML constructed from library input",
-        "full_description": "Using externally controlled strings to construct HTML might allow a malicious user to perform a cross-site scripting attack.",
-        "remediation": "# Unsafe HTML constructed from library input\nWhen a library function dynamically constructs HTML in a potentially unsafe way, then it's important to document to clients of the library that the function should only be used with trusted inputs. If the function is not documented as being potentially unsafe, then a client may inadvertently use inputs containing unsafe HTML fragments, and thereby leave the client vulnerable to cross-site scripting attacks.\n\n\n## Recommendation\nDocument all library functions that can lead to cross-site scripting attacks, and guard against unsafe inputs where dynamic HTML construction is not intended.\n\n\n## Example\nThe following example has a library function that renders a boldface name by writing to the `innerHTML` property of an element.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + name + \"</b>\";\n}\n\n```\nThis library function, however, does not escape unsafe HTML, and a client that calls the function with user-supplied input may be vulnerable to cross-site scripting attacks.\n\nThe library could either document that this function should not be used with unsafe inputs, or use safe APIs such as `innerText`.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  const bold = document.createElement('b');\n  bold.innerText = name;\n  document.getElementById('name').appendChild(bold);\n}\n\n```\nAlternatively, an HTML sanitizer can be used to remove unsafe content.\n\n\n```javascript\n\nconst striptags = require('striptags');\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + striptags(name) + \"</b>\";\n}\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet).\n* OWASP [DOM Based XSS](https://www.owasp.org/index.php/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](http://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
-        "reference": "",
         "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
       },
       {
@@ -64,6 +52,18 @@
         "remediation": "# Unsafe HTML constructed from library input\nWhen a library function dynamically constructs HTML in a potentially unsafe way, then it's important to document to clients of the library that the function should only be used with trusted inputs. If the function is not documented as being potentially unsafe, then a client may inadvertently use inputs containing unsafe HTML fragments, and thereby leave the client vulnerable to cross-site scripting attacks.\n\n\n## Recommendation\nDocument all library functions that can lead to cross-site scripting attacks, and guard against unsafe inputs where dynamic HTML construction is not intended.\n\n\n## Example\nThe following example has a library function that renders a boldface name by writing to the `innerHTML` property of an element.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + name + \"</b>\";\n}\n\n```\nThis library function, however, does not escape unsafe HTML, and a client that calls the function with user-supplied input may be vulnerable to cross-site scripting attacks.\n\nThe library could either document that this function should not be used with unsafe inputs, or use safe APIs such as `innerText`.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  const bold = document.createElement('b');\n  bold.innerText = name;\n  document.getElementById('name').appendChild(bold);\n}\n\n```\nAlternatively, an HTML sanitizer can be used to remove unsafe content.\n\n\n```javascript\n\nconst striptags = require('striptags');\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + striptags(name) + \"</b>\";\n}\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet).\n* OWASP [DOM Based XSS](https://www.owasp.org/index.php/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](http://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
         "reference": "",
         "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "SAST-js",
+        "rule_id": "js/html-constructed-from-input",
+        "severity": "6.1",
+        "message": "This HTML construction which depends on [library input](1) might later allow [cross-site scripting](2).",
+        "short_description": "Unsafe HTML constructed from library input",
+        "full_description": "Using externally controlled strings to construct HTML might allow a malicious user to perform a cross-site scripting attack.",
+        "remediation": "# Unsafe HTML constructed from library input\nWhen a library function dynamically constructs HTML in a potentially unsafe way, then it's important to document to clients of the library that the function should only be used with trusted inputs. If the function is not documented as being potentially unsafe, then a client may inadvertently use inputs containing unsafe HTML fragments, and thereby leave the client vulnerable to cross-site scripting attacks.\n\n\n## Recommendation\nDocument all library functions that can lead to cross-site scripting attacks, and guard against unsafe inputs where dynamic HTML construction is not intended.\n\n\n## Example\nThe following example has a library function that renders a boldface name by writing to the `innerHTML` property of an element.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + name + \"</b>\";\n}\n\n```\nThis library function, however, does not escape unsafe HTML, and a client that calls the function with user-supplied input may be vulnerable to cross-site scripting attacks.\n\nThe library could either document that this function should not be used with unsafe inputs, or use safe APIs such as `innerText`.\n\n\n```javascript\nmodule.exports = function showBoldName(name) {\n  const bold = document.createElement('b');\n  bold.innerText = name;\n  document.getElementById('name').appendChild(bold);\n}\n\n```\nAlternatively, an HTML sanitizer can be used to remove unsafe content.\n\n\n```javascript\n\nconst striptags = require('striptags');\nmodule.exports = function showBoldName(name) {\n  document.getElementById('name').innerHTML = \"<b>\" + striptags(name) + \"</b>\";\n}\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet).\n* OWASP [DOM Based XSS](https://www.owasp.org/index.php/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](http://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+        "reference": "",
+        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
       },
       {
         "tool": "CodeQL",
@@ -87,7 +87,7 @@
         "full_description": "A jQuery plugin that unintentionally constructs HTML from some of its options may be unsafe to use for clients.",
         "remediation": "# Unsafe jQuery plugin\nLibrary plugins, such as those for the jQuery library, are often configurable through options provided by the clients of the plugin. Clients, however, do not know the implementation details of the plugin, so it is important to document the capabilities of each option. The documentation for the plugin options that the client is responsible for sanitizing is of particular importance. Otherwise, the plugin may write user input (for example, a URL query parameter) to a web page without properly sanitizing it first, which allows for a cross-site scripting vulnerability in the client application through dynamic HTML construction.\n\n\n## Recommendation\nDocument all options that can lead to cross-site scripting attacks, and guard against unsafe inputs where dynamic HTML construction is not intended.\n\n\n## Example\nThe following example shows a jQuery plugin that selects a DOM element, and copies its text content to another DOM element. The selection is performed by using the plugin option `sourceSelector` as a CSS selector.\n\n\n```javascript\njQuery.fn.copyText = function(options) {\n\t// BAD may evaluate `options.sourceSelector` as HTML\n\tvar source = jQuery(options.sourceSelector),\n\t    text = source.text();\n\tjQuery(this).text(text);\n}\n\n```\nThis is, however, not a safe plugin, since the call to `jQuery` interprets `sourceSelector` as HTML if it is a string that starts with `<`.\n\nInstead of documenting that the client is responsible for sanitizing `sourceSelector`, the plugin can use `jQuery.find` to always interpret `sourceSelector` as a CSS selector:\n\n\n```javascript\njQuery.fn.copyText = function(options) {\n\t// GOOD may not evaluate `options.sourceSelector` as HTML\n\tvar source = jQuery.find(options.sourceSelector),\n\t    text = source.text();\n\tjQuery(this).text(text);\n}\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://www.owasp.org/index.php/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](http://en.wikipedia.org/wiki/Cross-site_scripting).\n* jQuery: [Plugin creation](https://learn.jquery.com/plugins/basic-plugin-creation/).\n* Bootstrap: [XSS vulnerable bootstrap plugins](https://github.com/twbs/bootstrap/pull/27047).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
         "reference": "",
-        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
+        "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
       },
       {
         "tool": "CodeQL",
@@ -99,7 +99,7 @@
         "full_description": "A jQuery plugin that unintentionally constructs HTML from some of its options may be unsafe to use for clients.",
         "remediation": "# Unsafe jQuery plugin\nLibrary plugins, such as those for the jQuery library, are often configurable through options provided by the clients of the plugin. Clients, however, do not know the implementation details of the plugin, so it is important to document the capabilities of each option. The documentation for the plugin options that the client is responsible for sanitizing is of particular importance. Otherwise, the plugin may write user input (for example, a URL query parameter) to a web page without properly sanitizing it first, which allows for a cross-site scripting vulnerability in the client application through dynamic HTML construction.\n\n\n## Recommendation\nDocument all options that can lead to cross-site scripting attacks, and guard against unsafe inputs where dynamic HTML construction is not intended.\n\n\n## Example\nThe following example shows a jQuery plugin that selects a DOM element, and copies its text content to another DOM element. The selection is performed by using the plugin option `sourceSelector` as a CSS selector.\n\n\n```javascript\njQuery.fn.copyText = function(options) {\n\t// BAD may evaluate `options.sourceSelector` as HTML\n\tvar source = jQuery(options.sourceSelector),\n\t    text = source.text();\n\tjQuery(this).text(text);\n}\n\n```\nThis is, however, not a safe plugin, since the call to `jQuery` interprets `sourceSelector` as HTML if it is a string that starts with `<`.\n\nInstead of documenting that the client is responsible for sanitizing `sourceSelector`, the plugin can use `jQuery.find` to always interpret `sourceSelector` as a CSS selector:\n\n\n```javascript\njQuery.fn.copyText = function(options) {\n\t// GOOD may not evaluate `options.sourceSelector` as HTML\n\tvar source = jQuery.find(options.sourceSelector),\n\t    text = source.text();\n\tjQuery(this).text(text);\n}\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://www.owasp.org/index.php/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://www.owasp.org/index.php/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](http://en.wikipedia.org/wiki/Cross-site_scripting).\n* jQuery: [Plugin creation](https://learn.jquery.com/plugins/basic-plugin-creation/).\n* Bootstrap: [XSS vulnerable bootstrap plugins](https://github.com/twbs/bootstrap/pull/27047).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
         "reference": "",
-        "file": "src/main/resources/webgoat/static/js/libs/jquery.form.js"
+        "file": "src/main/resources/webgoat/static/js/jquery_form/jquery.form.js"
       },
       {
         "tool": "CodeQL",
@@ -130,7 +130,7 @@
   {
     "tool": "CodeQL",
     "type": "SAST",
-    "timestamp": "2026-02-03T08:00:47.666188+00:00",
+    "timestamp": "2026-02-10T08:10:22.038984+00:00",
     "target": "source-code",
     "results": [
       {
@@ -426,36 +426,36 @@
         "type": "SAST-java",
         "rule_id": "java/path-injection",
         "severity": "7.5",
+        "message": "This path depends on a [user-provided value](1).",
+        "short_description": "Uncontrolled data used in path expression",
+        "full_description": "Accessing paths influenced by users can allow an attacker to access unexpected resources.",
+        "remediation": "# Uncontrolled data used in path expression\nAccessing paths controlled by users can allow an attacker to access unexpected resources. This can result in sensitive information being revealed or deleted, or an attacker being able to influence behavior by modifying unexpected files.\n\nPaths that are naively constructed from data controlled by a user may be absolute paths, or may contain unexpected special characters such as \"..\". Such a path could point anywhere on the file system.\n\n\n## Recommendation\nValidate user input before using it to construct a file path.\n\nCommon validation methods include checking that the normalized path is relative and does not contain any \"..\" components, or checking that the path is contained within a safe folder. The method you should use depends on how the path is used in the application, and whether the path should be a single path component.\n\nIf the path should be a single path component (such as a file name), you can check for the existence of any path separators (\"/\" or \"\\\\\"), or \"..\" sequences in the input, and reject the input if any are found.\n\nNote that removing \"../\" sequences is *not* sufficient, since the input could still contain a path separator followed by \"..\". For example, the input \".../...//\" would still result in the string \"../\" if only \"../\" sequences are removed.\n\nFinally, the simplest (but most restrictive) option is to use an allow list of safe patterns and make sure that the user input matches one of these patterns.\n\n\n## Example\nIn this example, a file name is read from a `java.net.Socket` and then used to access a file and send it back over the socket. However, a malicious user could enter a file name anywhere on the file system, such as \"/etc/passwd\" or \"../../../etc/passwd\".\n\n\n```java\npublic void sendUserFile(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// BAD: read from a file without checking its path\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n\n```\nIf the input should only be a file name, you can check that it doesn't contain any path separators or \"..\" sequences.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// GOOD: ensure that the filename has no path separators or parent directory references\n\tif (filename.contains(\"..\") || filename.contains(\"/\") || filename.contains(\"\\\\\")) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\t\n}\n\n```\nIf the input should be within a specific directory, you can check that the resolved path is still contained within that directory.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\n\tPath publicFolder = Paths.get(\"/home/\" + user + \"/public\").normalize().toAbsolutePath();\n\tPath filePath = publicFolder.resolve(filename).normalize().toAbsolutePath();\n\n\t// GOOD: ensure that the path stays within the public folder\n\tif (!filePath.startsWith(publicFolder + File.separator)) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filePath.toString()));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n```\n\n## References\n* OWASP: [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal).\n* Common Weakness Enumeration: [CWE-22](https://cwe.mitre.org/data/definitions/22.html).\n* Common Weakness Enumeration: [CWE-23](https://cwe.mitre.org/data/definitions/23.html).\n* Common Weakness Enumeration: [CWE-36](https://cwe.mitre.org/data/definitions/36.html).\n* Common Weakness Enumeration: [CWE-73](https://cwe.mitre.org/data/definitions/73.html).\n",
+        "reference": "",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadRetrieval.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "SAST-java",
+        "rule_id": "java/path-injection",
+        "severity": "7.5",
+        "message": "This path depends on a [user-provided value](1).",
+        "short_description": "Uncontrolled data used in path expression",
+        "full_description": "Accessing paths influenced by users can allow an attacker to access unexpected resources.",
+        "remediation": "# Uncontrolled data used in path expression\nAccessing paths controlled by users can allow an attacker to access unexpected resources. This can result in sensitive information being revealed or deleted, or an attacker being able to influence behavior by modifying unexpected files.\n\nPaths that are naively constructed from data controlled by a user may be absolute paths, or may contain unexpected special characters such as \"..\". Such a path could point anywhere on the file system.\n\n\n## Recommendation\nValidate user input before using it to construct a file path.\n\nCommon validation methods include checking that the normalized path is relative and does not contain any \"..\" components, or checking that the path is contained within a safe folder. The method you should use depends on how the path is used in the application, and whether the path should be a single path component.\n\nIf the path should be a single path component (such as a file name), you can check for the existence of any path separators (\"/\" or \"\\\\\"), or \"..\" sequences in the input, and reject the input if any are found.\n\nNote that removing \"../\" sequences is *not* sufficient, since the input could still contain a path separator followed by \"..\". For example, the input \".../...//\" would still result in the string \"../\" if only \"../\" sequences are removed.\n\nFinally, the simplest (but most restrictive) option is to use an allow list of safe patterns and make sure that the user input matches one of these patterns.\n\n\n## Example\nIn this example, a file name is read from a `java.net.Socket` and then used to access a file and send it back over the socket. However, a malicious user could enter a file name anywhere on the file system, such as \"/etc/passwd\" or \"../../../etc/passwd\".\n\n\n```java\npublic void sendUserFile(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// BAD: read from a file without checking its path\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n\n```\nIf the input should only be a file name, you can check that it doesn't contain any path separators or \"..\" sequences.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// GOOD: ensure that the filename has no path separators or parent directory references\n\tif (filename.contains(\"..\") || filename.contains(\"/\") || filename.contains(\"\\\\\")) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\t\n}\n\n```\nIf the input should be within a specific directory, you can check that the resolved path is still contained within that directory.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\n\tPath publicFolder = Paths.get(\"/home/\" + user + \"/public\").normalize().toAbsolutePath();\n\tPath filePath = publicFolder.resolve(filename).normalize().toAbsolutePath();\n\n\t// GOOD: ensure that the path stays within the public folder\n\tif (!filePath.startsWith(publicFolder + File.separator)) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filePath.toString()));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n```\n\n## References\n* OWASP: [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal).\n* Common Weakness Enumeration: [CWE-22](https://cwe.mitre.org/data/definitions/22.html).\n* Common Weakness Enumeration: [CWE-23](https://cwe.mitre.org/data/definitions/23.html).\n* Common Weakness Enumeration: [CWE-36](https://cwe.mitre.org/data/definitions/36.html).\n* Common Weakness Enumeration: [CWE-73](https://cwe.mitre.org/data/definitions/73.html).\n",
+        "reference": "",
+        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadRetrieval.java"
+      },
+      {
+        "tool": "CodeQL",
+        "type": "SAST-java",
+        "rule_id": "java/path-injection",
+        "severity": "7.5",
         "message": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
         "short_description": "Uncontrolled data used in path expression",
         "full_description": "Accessing paths influenced by users can allow an attacker to access unexpected resources.",
         "remediation": "# Uncontrolled data used in path expression\nAccessing paths controlled by users can allow an attacker to access unexpected resources. This can result in sensitive information being revealed or deleted, or an attacker being able to influence behavior by modifying unexpected files.\n\nPaths that are naively constructed from data controlled by a user may be absolute paths, or may contain unexpected special characters such as \"..\". Such a path could point anywhere on the file system.\n\n\n## Recommendation\nValidate user input before using it to construct a file path.\n\nCommon validation methods include checking that the normalized path is relative and does not contain any \"..\" components, or checking that the path is contained within a safe folder. The method you should use depends on how the path is used in the application, and whether the path should be a single path component.\n\nIf the path should be a single path component (such as a file name), you can check for the existence of any path separators (\"/\" or \"\\\\\"), or \"..\" sequences in the input, and reject the input if any are found.\n\nNote that removing \"../\" sequences is *not* sufficient, since the input could still contain a path separator followed by \"..\". For example, the input \".../...//\" would still result in the string \"../\" if only \"../\" sequences are removed.\n\nFinally, the simplest (but most restrictive) option is to use an allow list of safe patterns and make sure that the user input matches one of these patterns.\n\n\n## Example\nIn this example, a file name is read from a `java.net.Socket` and then used to access a file and send it back over the socket. However, a malicious user could enter a file name anywhere on the file system, such as \"/etc/passwd\" or \"../../../etc/passwd\".\n\n\n```java\npublic void sendUserFile(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// BAD: read from a file without checking its path\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n\n```\nIf the input should only be a file name, you can check that it doesn't contain any path separators or \"..\" sequences.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// GOOD: ensure that the filename has no path separators or parent directory references\n\tif (filename.contains(\"..\") || filename.contains(\"/\") || filename.contains(\"\\\\\")) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\t\n}\n\n```\nIf the input should be within a specific directory, you can check that the resolved path is still contained within that directory.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\n\tPath publicFolder = Paths.get(\"/home/\" + user + \"/public\").normalize().toAbsolutePath();\n\tPath filePath = publicFolder.resolve(filename).normalize().toAbsolutePath();\n\n\t// GOOD: ensure that the path stays within the public folder\n\tif (!filePath.startsWith(publicFolder + File.separator)) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filePath.toString()));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n```\n\n## References\n* OWASP: [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal).\n* Common Weakness Enumeration: [CWE-22](https://cwe.mitre.org/data/definitions/22.html).\n* Common Weakness Enumeration: [CWE-23](https://cwe.mitre.org/data/definitions/23.html).\n* Common Weakness Enumeration: [CWE-36](https://cwe.mitre.org/data/definitions/36.html).\n* Common Weakness Enumeration: [CWE-73](https://cwe.mitre.org/data/definitions/73.html).\n",
         "reference": "",
         "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileZipSlip.java"
-      },
-      {
-        "tool": "CodeQL",
-        "type": "SAST-java",
-        "rule_id": "java/path-injection",
-        "severity": "7.5",
-        "message": "This path depends on a [user-provided value](1).",
-        "short_description": "Uncontrolled data used in path expression",
-        "full_description": "Accessing paths influenced by users can allow an attacker to access unexpected resources.",
-        "remediation": "# Uncontrolled data used in path expression\nAccessing paths controlled by users can allow an attacker to access unexpected resources. This can result in sensitive information being revealed or deleted, or an attacker being able to influence behavior by modifying unexpected files.\n\nPaths that are naively constructed from data controlled by a user may be absolute paths, or may contain unexpected special characters such as \"..\". Such a path could point anywhere on the file system.\n\n\n## Recommendation\nValidate user input before using it to construct a file path.\n\nCommon validation methods include checking that the normalized path is relative and does not contain any \"..\" components, or checking that the path is contained within a safe folder. The method you should use depends on how the path is used in the application, and whether the path should be a single path component.\n\nIf the path should be a single path component (such as a file name), you can check for the existence of any path separators (\"/\" or \"\\\\\"), or \"..\" sequences in the input, and reject the input if any are found.\n\nNote that removing \"../\" sequences is *not* sufficient, since the input could still contain a path separator followed by \"..\". For example, the input \".../...//\" would still result in the string \"../\" if only \"../\" sequences are removed.\n\nFinally, the simplest (but most restrictive) option is to use an allow list of safe patterns and make sure that the user input matches one of these patterns.\n\n\n## Example\nIn this example, a file name is read from a `java.net.Socket` and then used to access a file and send it back over the socket. However, a malicious user could enter a file name anywhere on the file system, such as \"/etc/passwd\" or \"../../../etc/passwd\".\n\n\n```java\npublic void sendUserFile(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// BAD: read from a file without checking its path\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n\n```\nIf the input should only be a file name, you can check that it doesn't contain any path separators or \"..\" sequences.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// GOOD: ensure that the filename has no path separators or parent directory references\n\tif (filename.contains(\"..\") || filename.contains(\"/\") || filename.contains(\"\\\\\")) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\t\n}\n\n```\nIf the input should be within a specific directory, you can check that the resolved path is still contained within that directory.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\n\tPath publicFolder = Paths.get(\"/home/\" + user + \"/public\").normalize().toAbsolutePath();\n\tPath filePath = publicFolder.resolve(filename).normalize().toAbsolutePath();\n\n\t// GOOD: ensure that the path stays within the public folder\n\tif (!filePath.startsWith(publicFolder + File.separator)) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filePath.toString()));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n```\n\n## References\n* OWASP: [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal).\n* Common Weakness Enumeration: [CWE-22](https://cwe.mitre.org/data/definitions/22.html).\n* Common Weakness Enumeration: [CWE-23](https://cwe.mitre.org/data/definitions/23.html).\n* Common Weakness Enumeration: [CWE-36](https://cwe.mitre.org/data/definitions/36.html).\n* Common Weakness Enumeration: [CWE-73](https://cwe.mitre.org/data/definitions/73.html).\n",
-        "reference": "",
-        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadRetrieval.java"
-      },
-      {
-        "tool": "CodeQL",
-        "type": "SAST-java",
-        "rule_id": "java/path-injection",
-        "severity": "7.5",
-        "message": "This path depends on a [user-provided value](1).",
-        "short_description": "Uncontrolled data used in path expression",
-        "full_description": "Accessing paths influenced by users can allow an attacker to access unexpected resources.",
-        "remediation": "# Uncontrolled data used in path expression\nAccessing paths controlled by users can allow an attacker to access unexpected resources. This can result in sensitive information being revealed or deleted, or an attacker being able to influence behavior by modifying unexpected files.\n\nPaths that are naively constructed from data controlled by a user may be absolute paths, or may contain unexpected special characters such as \"..\". Such a path could point anywhere on the file system.\n\n\n## Recommendation\nValidate user input before using it to construct a file path.\n\nCommon validation methods include checking that the normalized path is relative and does not contain any \"..\" components, or checking that the path is contained within a safe folder. The method you should use depends on how the path is used in the application, and whether the path should be a single path component.\n\nIf the path should be a single path component (such as a file name), you can check for the existence of any path separators (\"/\" or \"\\\\\"), or \"..\" sequences in the input, and reject the input if any are found.\n\nNote that removing \"../\" sequences is *not* sufficient, since the input could still contain a path separator followed by \"..\". For example, the input \".../...//\" would still result in the string \"../\" if only \"../\" sequences are removed.\n\nFinally, the simplest (but most restrictive) option is to use an allow list of safe patterns and make sure that the user input matches one of these patterns.\n\n\n## Example\nIn this example, a file name is read from a `java.net.Socket` and then used to access a file and send it back over the socket. However, a malicious user could enter a file name anywhere on the file system, such as \"/etc/passwd\" or \"../../../etc/passwd\".\n\n\n```java\npublic void sendUserFile(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// BAD: read from a file without checking its path\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n\n```\nIf the input should only be a file name, you can check that it doesn't contain any path separators or \"..\" sequences.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\t// GOOD: ensure that the filename has no path separators or parent directory references\n\tif (filename.contains(\"..\") || filename.contains(\"/\") || filename.contains(\"\\\\\")) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filename));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\t\n}\n\n```\nIf the input should be within a specific directory, you can check that the resolved path is still contained within that directory.\n\n\n```java\npublic void sendUserFileGood(Socket sock, String user) {\n\tBufferedReader filenameReader = new BufferedReader(\n\t\t\tnew InputStreamReader(sock.getInputStream(), \"UTF-8\"));\n\tString filename = filenameReader.readLine();\n\n\tPath publicFolder = Paths.get(\"/home/\" + user + \"/public\").normalize().toAbsolutePath();\n\tPath filePath = publicFolder.resolve(filename).normalize().toAbsolutePath();\n\n\t// GOOD: ensure that the path stays within the public folder\n\tif (!filePath.startsWith(publicFolder + File.separator)) {\n\t\tthrow new IllegalArgumentException(\"Invalid filename\");\n\t}\n\tBufferedReader fileReader = new BufferedReader(new FileReader(filePath.toString()));\n\tString fileLine = fileReader.readLine();\n\twhile(fileLine != null) {\n\t\tsock.getOutputStream().write(fileLine.getBytes());\n\t\tfileLine = fileReader.readLine();\n\t}\n}\n```\n\n## References\n* OWASP: [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal).\n* Common Weakness Enumeration: [CWE-22](https://cwe.mitre.org/data/definitions/22.html).\n* Common Weakness Enumeration: [CWE-23](https://cwe.mitre.org/data/definitions/23.html).\n* Common Weakness Enumeration: [CWE-36](https://cwe.mitre.org/data/definitions/36.html).\n* Common Weakness Enumeration: [CWE-73](https://cwe.mitre.org/data/definitions/73.html).\n",
-        "reference": "",
-        "file": "src/main/java/org/owasp/webgoat/lessons/pathtraversal/ProfileUploadRetrieval.java"
       },
       {
         "tool": "CodeQL",
@@ -750,7 +750,7 @@
   {
     "tool": "Trivy",
     "type": "SCA File Scan",
-    "timestamp": "2026-02-03T08:00:47.668382+00:00",
+    "timestamp": "2026-02-10T08:10:22.041211+00:00",
     "target": "file:///home/runner/work/WebGoat-T/WebGoat-T/",
     "results": [
       {
@@ -1448,7 +1448,7 @@
   {
     "tool": "Trivy",
     "type": "SCA Image Scan",
-    "timestamp": "2026-02-03T08:00:47.673542+00:00",
+    "timestamp": "2026-02-10T08:10:22.046524+00:00",
     "target": "file:///",
     "results": [
       {
@@ -2274,16 +2274,6 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
         "cve": "CVE-2022-3219",
         "component": "keyboxd",
         "severity": "2.0",
@@ -2334,12 +2324,42 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-68973",
+        "component": "keyboxd",
+        "severity": "8.0",
+        "description": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+        "remediation": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-68973"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-30258",
         "component": "keyboxd",
         "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
         "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-68972",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-68972"
       },
       {
         "tool": "Trivy",
@@ -2384,12 +2404,42 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-68973",
+        "component": "keyboxd",
+        "severity": "8.0",
+        "description": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+        "remediation": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-68973"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-30258",
         "component": "keyboxd",
         "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
         "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-68972",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-68972"
       },
       {
         "tool": "Trivy",
@@ -2434,12 +2484,42 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
+        "cve": "CVE-2022-3219",
+        "component": "keyboxd",
+        "severity": "2.0",
+        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
+        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-68973",
+        "component": "keyboxd",
+        "severity": "8.0",
+        "description": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
+        "remediation": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-68973"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-30258",
         "component": "keyboxd",
         "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
+        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
         "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2025-68972",
+        "component": "keyboxd",
+        "severity": "5.5",
+        "description": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-68972"
       },
       {
         "tool": "Trivy",
@@ -2484,16 +2564,6 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
         "cve": "CVE-2022-3219",
         "component": "keyboxd",
         "severity": "2.0",
@@ -2530,166 +2600,6 @@
         "description": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
         "remediation": "",
         "reference": "https://avd.aquasec.com/nvd/cve-2025-68972"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2022-3219",
-        "component": "keyboxd",
-        "severity": "2.0",
-        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
-        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
-        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-68973",
-        "component": "keyboxd",
-        "severity": "8.0",
-        "description": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
-        "remediation": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-68973"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-30258",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-68972",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-68972"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2022-3219",
-        "component": "keyboxd",
-        "severity": "2.0",
-        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
-        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
-        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-68973",
-        "component": "keyboxd",
-        "severity": "8.0",
-        "description": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
-        "remediation": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-68973"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-30258",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-68972",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-68972"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2022-3219",
-        "component": "keyboxd",
-        "severity": "2.0",
-        "description": "gnupg: denial of service issue (resource consumption) using compressed packets",
-        "remediation": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
-        "reference": "https://avd.aquasec.com/nvd/cve-2022-3219"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-68973",
-        "component": "keyboxd",
-        "severity": "8.0",
-        "description": "GnuPG: GnuPG: Information disclosure and potential arbitrary code execution via out-of-bounds write",
-        "remediation": "In GnuPG before 2.4.9, armor_filter in g10/armor.c has two increments of an index variable where one is intended, leading to an out-of-bounds write for crafted input. (For ExtendedLTS, 2.2.51 and later are fixed versions.)",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-68973"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-30258",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "gnupg: verification DoS due to a malicious subkey in the keyring",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-30258"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2025-68972",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2025-68972"
-      },
-      {
-        "tool": "Trivy",
-        "type": "SCA Image Scan",
-        "cve": "CVE-2026-24882",
-        "component": "keyboxd",
-        "severity": "5.5",
-        "description": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
-        "remediation": "",
-        "reference": "https://avd.aquasec.com/nvd/cve-2026-24882"
       },
       {
         "tool": "Trivy",
@@ -2974,6 +2884,16 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
+        "cve": "CVE-2025-15281",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-15281"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
         "cve": "CVE-2025-5702",
         "component": "locales",
         "severity": "5.5",
@@ -3000,6 +2920,16 @@
         "description": "glibc: Integer overflow in memalign leads to heap corruption",
         "remediation": "",
         "reference": "https://avd.aquasec.com/nvd/cve-2026-0861"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2026-0915",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: glibc: Information disclosure via zero-valued network query",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2026-0915"
       },
       {
         "tool": "Trivy",
@@ -3014,6 +2944,16 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
+        "cve": "CVE-2025-15281",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-15281"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
         "cve": "CVE-2025-5702",
         "component": "locales",
         "severity": "5.5",
@@ -3040,6 +2980,16 @@
         "description": "glibc: Integer overflow in memalign leads to heap corruption",
         "remediation": "",
         "reference": "https://avd.aquasec.com/nvd/cve-2026-0861"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2026-0915",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: glibc: Information disclosure via zero-valued network query",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2026-0915"
       },
       {
         "tool": "Trivy",
@@ -4604,6 +4554,16 @@
       {
         "tool": "Trivy",
         "type": "SCA Image Scan",
+        "cve": "CVE-2025-15281",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2025-15281"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
         "cve": "CVE-2025-5702",
         "component": "locales",
         "severity": "5.5",
@@ -4630,6 +4590,16 @@
         "description": "glibc: Integer overflow in memalign leads to heap corruption",
         "remediation": "",
         "reference": "https://avd.aquasec.com/nvd/cve-2026-0861"
+      },
+      {
+        "tool": "Trivy",
+        "type": "SCA Image Scan",
+        "cve": "CVE-2026-0915",
+        "component": "locales",
+        "severity": "5.5",
+        "description": "glibc: glibc: Information disclosure via zero-valued network query",
+        "remediation": "",
+        "reference": "https://avd.aquasec.com/nvd/cve-2026-0915"
       },
       {
         "tool": "Trivy",
@@ -5436,7 +5406,7 @@
   {
     "tool": "OWASP ZAP",
     "type": "DAST",
-    "timestamp": "2026-02-03T08:00:47.673812+00:00",
+    "timestamp": "2026-02-10T08:10:22.046809+00:00",
     "target": "N/A",
     "results": [
       {
@@ -5446,6 +5416,17 @@
         "risk": "Medium (High)",
         "description": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
         "uri": "http://127.0.0.1:8080",
+        "evidence": "",
+        "solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.</p>",
+        "cwe": "693"
+      },
+      {
+        "tool": "OWASP ZAP",
+        "type": "DAST",
+        "name": "Content Security Policy (CSP) Header Not Set",
+        "risk": "Medium (High)",
+        "description": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
+        "uri": "http://127.0.0.1:8080/sitemap.xml",
         "evidence": "",
         "solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.</p>",
         "cwe": "693"
